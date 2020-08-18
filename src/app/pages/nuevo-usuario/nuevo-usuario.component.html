@@ -1,0 +1,203 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <app-page-header></app-page-header>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <!-- form start -->
+            <form [formGroup]="usuarioForm" (submit)="saveUsr($event)">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-dark">
+                            <div class="card-header">
+                                <h3 class="card-title">Datos generales</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Nombre</label>
+                                            <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('nombre').errors && this.usuarioForm.get('nombre').touched" formControlName="nombre" placeholder="Nombre">
+                                            <div class="invalid-feedback">
+                                                El campo es requerido.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Apellido paterno</label>
+                                            <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('apaterno').errors && this.usuarioForm.get('apaterno').touched" formControlName="apaterno" placeholder="Apellido paterno">
+                                            <div class="invalid-feedback">
+                                                El campo es requerido.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Apellido materno</label>
+                                            <input type="text" class="form-control" formControlName="amaterno" placeholder="Apellido materno">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">RFC</label>
+                                            <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('rfc').errors && this.usuarioForm.get('rfc').touched" formControlName="rfc" placeholder="RFC">
+
+                                            <div class="invalid-feedback">
+                                                Introduce un RFC valido.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">CURP</label>
+                                            <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('curp').errors && this.usuarioForm.get('curp').touched" formControlName="curp" placeholder="CURP">
+
+                                            <div class="invalid-feedback">
+                                                Introduce un CURP valido.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Email</label>
+                                            <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('email').errors && this.usuarioForm.get('email').touched" formControlName="email" placeholder="Email">
+
+                                            <div class="invalid-feedback">
+                                                Introduce un Email valido.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Puesto</label>
+                                            <select formControlName="puesto" [class.is-invalid]="this.usuarioForm.get('puesto').errors && this.usuarioForm.get('puesto').touched" class="form-control">
+                                                <option value="contador">Contador</option>
+                                            </select>
+
+                                            <div class="invalid-feedback">
+                                                El campo es requerido.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Calle</label>
+                                            <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('calle').errors && this.usuarioForm.get('calle').touched" formControlName="calle" placeholder="Calle">
+
+                                            <div class="invalid-feedback">
+                                                El campo es requerido.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Numero Ext.</label>
+                                            <input type="text" class="form-control" formControlName="numeroE" placeholder="Ext.">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Numero Int.</label>
+                                            <input type="text" class="form-control" formControlName="numeroI" placeholder="Int.">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Colonia</label>
+                                            <input type="text" [class.is-invalid]="this.usuarioForm.get('colonia').errors && this.usuarioForm.get('colonia').touched" class="form-control" formControlName="colonia" placeholder="Colonia">
+
+                                            <div class="invalid-feedback">
+                                                El campo es requerido.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Estado</label>
+                                            <select formControlName="estado" [class.is-invalid]="this.usuarioForm.get('estado').errors && this.usuarioForm.get('estado').touched" (change)="selectMunicipios()" class="form-control">
+                                                <option *ngFor="let item of this.direcService.estados" value="{{item}}">{{item}}</option>
+                                            </select>
+
+                                            <div class="invalid-feedback">
+                                                El campo es requerido.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Municipio</label>
+                                            <select class="form-control" [class.is-invalid]="this.usuarioForm.get('municipio').errors && this.usuarioForm.get('municipio').touched" formControlName="municipio">
+                                                
+                                            <option *ngFor="let item of this.direcService.municipios" value="{{item}}">{{item}}</option>
+                                            </select>
+
+                                            <div class="invalid-feedback">
+                                                El campo es requerido.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Telefono</label>
+                                            <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('telefono').errors && this.usuarioForm.get('telefono').touched" formControlName="telefono" placeholder="Telefono">
+
+                                            <div class="invalid-feedback">
+                                                Introduce un telefono a 10 digitos valido.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-md-4 offset-md-8">
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <button type="button" (click)="resetForm()" class="btn btn-danger form-control"><i class="fas fa-eraser"></i></button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button type="submit" class="btn btn-success form-control"><i class="fas fa-save"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!--/.col (left) -->
+
+
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+
+                </div>
+
+            </form>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
