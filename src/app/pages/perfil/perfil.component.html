@@ -4,7 +4,7 @@
     <!-- Main content -->
 
     <!-- Main content -->
-    <section *ngIf="!editar" class="content">
+    <section *ngIf="!editar && !changePass" class="content">
 
         <div class="col-md-6 offset-md-3">
 
@@ -46,9 +46,21 @@
                             <b><i class="fas fa-check"></i> Puesto:</b> <a class="float-right">{{this.usrService.loggedUsr?.puesto | uppercase}}</a>
                         </li>
                     </ul>
-                    <button (click)="editarUsuario()" class="btn btn-block btn-outline-primary">Editar</button>
+
                 </div>
                 <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-4 offset-md-4">
+                            <button (click)="editarPass()" class="btn btn-block bg-gradient-warning"><i class="fas fa-user-edit"></i> Cambiar contraseña</button>
+                        </div>
+                        <div class="col-md-4">
+                            <button (click)="editarUsuario()" class="btn btn-block bg-gradient-success"><i class="fas fa-user-edit"></i> Editar datos</button>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </section>
@@ -218,6 +230,73 @@
                                     </div>
                                     <div class="col-md-6">
                                         <button type="submit" class="btn btn-success form-control"><i class="fas fa-save"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card -->
+
+            </form>
+        </div>
+        <!--/.col (left) -->
+
+
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+
+    <!-- Main content -->
+    <section *ngIf="changePass" class="content">
+
+        <!-- left column -->
+        <div class="col-md-4 offset-md-4">
+
+            <!-- form start -->
+            <form [formGroup]="changePassForm">
+                <!-- general form elements -->
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title">Cambiar contraseña</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Contraseña</label>
+                                    <input type="password" class="form-control" [class.is-invalid]="this.changePassForm.get('pass').errors && this.changePassForm.get('pass').touched" formControlName="pass" placeholder="Contraseña">
+                                    <div class="invalid-feedback">
+                                        El campo es requerido.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Repetir contraseña</label>
+                                    <input type="password" class="form-control" [class.is-invalid]="this.changePassForm.get('pass2').errors && this.changePassForm.get('pass2').touched" formControlName="pass2" placeholder="Repetir ontraseña">
+                                    <div class="invalid-feedback">
+                                        El campo es requerido.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-6 offset-md-6">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <button type="button" (click)="editarPass()" class="btn btn-danger form-control"><i class="fas fa-window-close"></i></button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="submit" (click)="savePass($event)" class="btn btn-success form-control"><i class="fas fa-save"></i></button>
                                     </div>
                                 </div>
                             </div>
