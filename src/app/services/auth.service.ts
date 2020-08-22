@@ -40,7 +40,15 @@ export class AuthService {
   }
 
   getUid(){
-    console.log('getUid ' + this.logedUsrID);
     this.logedUsrID = this.decodeToken().uid;
+  }
+
+  isLogged(){
+    if(localStorage.getItem('x-token')){
+      
+      return true;
+    }
+    
+    return false;
   }
 }
