@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../../services/usuarios.service';
 import Swal from 'sweetalert2';
+import { UsuarioI } from '../../models/usuario-i';
 
 @Component({
   selector: 'app-lista-usuarios',
@@ -11,15 +12,19 @@ import Swal from 'sweetalert2';
 export class ListaUsuariosComponent implements OnInit {
 
   p: number = 1;
-  public usuarios: any;
+  public usuarios: UsuarioI[];
   constructor(private usrService: UsuariosService) {
+    this.getUsuarios();
+   }
+
+  ngOnInit(): void {
+  }
+
+  getUsuarios(){
     this.usrService.getUsuarios()
       .subscribe((resp: any) => {
         this.usuarios = resp.usuarios;
       });
-   }
-
-  ngOnInit(): void {
   }
 
   deleteUsuario(event: Event,usuario){
@@ -37,6 +42,7 @@ export class ListaUsuariosComponent implements OnInit {
       if (result.value) {
         this.usrService.deleteUsuario(usuario)
         .subscribe((resp: any) => {
+          this.getUsuarios();
           Swal.fire(
             'Usuario eliminado!',
             resp.msg,

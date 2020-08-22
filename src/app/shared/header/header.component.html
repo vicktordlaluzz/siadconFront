@@ -114,17 +114,17 @@
         </li>
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                <img src="../../../assets/adminLTE/dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt="User Image">
-                <span class="d-none d-md-inline">{{this.authService.logedUsr.nombre}}</span>
+                <img style="width: 40px; height: 40px ;cursor:pointer; cursor: hand;object-fit: scale-down;" src="http://localhost:3005/api/usuarios/img/{{this.usrService.loggedUsr?.img}}" class="user-image img-circle elevation-2" alt="User Image">
+                <span class="d-none d-md-inline">{{this.usrService.loggedUsr?.nombre | uppercase}} {{this.usrService.loggedUsr?.apaterno | uppercase}}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
                 <li class="user-header bg-primary">
-                    <img src="../../../assets/adminLTE/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    <img style="width: 100px; height: 100px ;cursor:pointer; cursor: hand;object-fit: scale-down;" src="http://localhost:3005/api/usuarios/img/{{this.usrService.loggedUsr?.img}}" class="img-circle elevation-2" alt="User Image">
 
                     <p>
-                        {{this.authService.logedUsr.nombre}} - {{this.authService.logedUsr.role.descripcion}}
-                        <small>{{this.authService.logedUsr.email}}</small>
+                        {{this.usrService.loggedUsr?.nombre | uppercase}} {{this.usrService.loggedUsr?.apaterno |uppercase}} - {{this.usrService.loggedUsr?.puesto | uppercase}}
+                        <small>{{this.usrService.loggedUsr?.email}}</small>
                     </p>
                 </li>
                 <!-- Menu Footer-->
