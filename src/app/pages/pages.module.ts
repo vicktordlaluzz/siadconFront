@@ -9,6 +9,9 @@ import { NuevoUsuarioComponent } from './nuevo-usuario/nuevo-usuario.component';
 import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ChangePassComponent } from './change-pass/change-pass.component';
+import { AddClienteComponent } from './add-cliente/add-cliente.component';
+import { ListaClientesComponent } from './lista-clientes/lista-clientes.component';
 
 
 
@@ -18,7 +21,10 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HomeComponent,
     PerfilComponent,
     NuevoUsuarioComponent,
-    ListaUsuariosComponent
+    ListaUsuariosComponent,
+    ChangePassComponent,
+    AddClienteComponent,
+    ListaClientesComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,53 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <app-page-header></app-page-header>
+    <!-- Main content -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="card card-navy">
+            <div class="card-header">
+                <h3 class="card-title">Clientes</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%">FOLIO</th>
+                            <th>Nombre</th>
+                            <th>RFC</th>
+                            <th>NSS</th>
+                            <th>CURP</th>
+                            <th>Email</th>
+                            <th>Fecha de alta</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of this.clientes | paginate: { itemsPerPage: 10, currentPage: p }">
+                            <td>{{item._id}}</td>
+                            <td>{{item.nombre | uppercase}} {{item.apaterno | uppercase}} {{item.amaterno | uppercase}} </td>
+                            <td>{{item.rfc}}
+                            </td>
+                            <td>{{item.nss}}</td>
+                            <td>{{item.curp}}</td>
+                            <td>{{item.email}}</td>
+                            <td>{{item.fecha | date }}</td>
+                            <td class="text-center"><button class="btn btn-xs btn-block bg-gradient-info"><small><i class="fas fa-info"></i></small></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer ">
+                <nav aria-label="Contacts Page Navigation ">
+                    <ul class="pagination justify-content-center m-0 ">
+                        <pagination-controls (pageChange)="p=$event" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+</div>

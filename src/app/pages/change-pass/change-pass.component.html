@@ -1,0 +1,81 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <app-page-header></app-page-header>
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- left column -->
+        <div class="col-md-4 offset-md-4">
+
+            <!-- form start -->
+            <form [formGroup]="changePassForm">
+                <!-- general form elements -->
+                <div class="card card-dark">
+                    <div class="card-header">
+                        <h3 class="card-title">Cambiar contraseña</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Contraseña actual</label>
+                                    <input type="password" class="form-control" [class.is-invalid]="this.changePassForm.get('pass').errors && this.changePassForm.get('pass').touched" formControlName="pass" placeholder="Contraseña">
+                                    <div class="invalid-feedback">
+                                        El campo es requerido.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Nueva contraseña</label>
+                                    <input type="password" class="form-control" [class.is-invalid]="this.changePassForm.get('newPass').errors && this.changePassForm.get('newPass').touched" formControlName="newPass" placeholder="Contraseña">
+                                    <div class="invalid-feedback">
+                                        El campo es requerido.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Repetir contraseña</label>
+                                    <input type="password" class="form-control" [class.is-invalid]="this.changePassForm.get('newPass2').errors && this.changePassForm.get('newPass2').touched" formControlName="newPass2" placeholder="Repetir ontraseña">
+                                    <div class="invalid-feedback">
+                                        El campo es requerido.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-6 offset-md-6">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <button type="button" (click)="resetForm()" class="btn bg-gradient-danger btn-block"><i class="fas fa-window-close"></i></button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="submit" (click)="savePass($event)" class="btn bg-gradient-warning btn-block"><i class="fas fa-save"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card -->
+
+            </form>
+        </div>
+        <!--/.col (left) -->
+
+
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>

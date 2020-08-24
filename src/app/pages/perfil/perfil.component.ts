@@ -18,8 +18,6 @@ export class PerfilComponent implements OnInit {
 
   public loggedUsr: UsuarioI;
   usuarioForm: FormGroup;
-  changePassForm: FormGroup;
-  changePass = false
   editar = false;
   estados = null;
 
@@ -96,11 +94,6 @@ export class PerfilComponent implements OnInit {
       municipio: ['', Validators.required],
       telefono: ['', [Validators.required,Validators.minLength(10), Validators.maxLength(10)]]
     });
-
-    this.changePassForm = this.fb.group({
-      pass: [``, Validators.required],
-      pass2: [``, Validators.required],
-    })
   }
 
   selectMunicipios(){
@@ -141,36 +134,6 @@ export class PerfilComponent implements OnInit {
     this.usuarioForm.controls.municipio.setValue(this.usrService.loggedUsr.direccion.municipio);
   }
 
-  editarPass(){
-    this.changePass = !this.changePass;
-  }
 
-  savePass(event: Event){
-    event.preventDefault();
-    this.changePassForm.markAllAsTouched();
-    const passes = this.changePassForm.value;
-    if (this.changePassForm.valid) {
-      if(passes.pass != passes.pass2){
-        return Swal.fire({
-          icon: 'error',
-          title: 'Las contraseñas no coinciden',
-          showConfirmButton: true
-      });
-    }
-
-      if(passes.pass === passes.pass2){
-        this.usrService.updateUsuario(this.usrService.loggedUsr._id, passes)
-        .subscribe((res: any)=>{
-          return Swal.fire({
-            icon: 'success',
-            title: res.msg.toUpperCase(),
-            showConfirmButton: true
-        }); 
-        },err => console.log(err)
-        
-        )
-    }
-    }
-  }
 
 }

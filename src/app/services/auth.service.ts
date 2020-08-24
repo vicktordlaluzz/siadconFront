@@ -51,4 +51,14 @@ export class AuthService {
     
     return false;
   }
+
+  
+
+  changePass(form){
+    return this.http.post(`${environment.base_url}/auth/changePass`,form,{
+      headers:{
+        'x-token': localStorage.getItem('x-token')
+      }
+    });
+  }
 }
