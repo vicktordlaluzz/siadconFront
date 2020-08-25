@@ -13,6 +13,7 @@ import { ChangePassComponent } from './change-pass/change-pass.component';
 import { AddClienteComponent } from './add-cliente/add-cliente.component';
 import { ListaClientesComponent } from './lista-clientes/lista-clientes.component';
 import { BusquedaClientePipe } from '../pipes/busqueda-cliente.pipe';
+import { DetalleClienteComponent } from './detalle-cliente/detalle-cliente.component';
 
 
 
@@ -26,7 +27,8 @@ import { BusquedaClientePipe } from '../pipes/busqueda-cliente.pipe';
     ChangePassComponent,
     AddClienteComponent,
     ListaClientesComponent,
-    BusquedaClientePipe
+    BusquedaClientePipe,
+    DetalleClienteComponent
   ],
   imports: [
     CommonModule,

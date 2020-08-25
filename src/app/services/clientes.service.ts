@@ -27,4 +27,12 @@ export class ClientesService {
       }
     });
   }
+
+  getCliente(cliente: string){
+    return this.http.get(`${environment.base_url}/clientes/${cliente}`,{
+      headers: {
+        'x-token': this.token
+      }
+    });
+  }
 }

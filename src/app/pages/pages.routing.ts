@@ -9,6 +9,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { ChangePassComponent } from './change-pass/change-pass.component';
 import { AddClienteComponent } from './add-cliente/add-cliente.component';
 import { ListaClientesComponent } from './lista-clientes/lista-clientes.component';
+import { DetalleClienteComponent } from './detalle-cliente/detalle-cliente.component';
 
 const routes: Routes = [
     {
@@ -22,7 +23,8 @@ const routes: Routes = [
             { path: 'administrador/nuevoUsuario', component: NuevoUsuarioComponent},
             { path: 'administrador/listaUsuarios', component: ListaUsuariosComponent},
             { path: 'clientes/alta', component: AddClienteComponent},
-            { path: 'clientes/expedientes', component: ListaClientesComponent}
+            { path: 'clientes/expedientes', component: ListaClientesComponent},
+            { path: 'clientes/expedientes/:cliente', component: DetalleClienteComponent}
         ]
     }
 ];

@@ -41,7 +41,7 @@
                             <td>{{item.curp}}</td>
                             <td>{{item.email}}</td>
                             <td>{{item.fecha | date }}</td>
-                            <td class="text-center"><button class="btn btn-xs btn-block bg-gradient-primary"><small><i class="fas fa-info"></i></small></button></td>
+                            <td class="text-center"><button class="btn btn-xs btn-block bg-gradient-primary" type="button" (click)="detalleCliente(item._id)"><small><i class="fas fa-info"></i></small></button></td>
                         </tr>
                     </tbody>
                 </table>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientesService } from '../../services/clientes.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-clientes',
@@ -15,7 +16,8 @@ export class ListaClientesComponent implements OnInit {
   filtrado = '';
   searchForm:FormGroup;
   constructor(private clientesServ: ClientesService,
-              private fb: FormBuilder) { 
+              private fb: FormBuilder,
+              private router: Router) { 
     this.getClientes();
     this.buildForm();
   }
@@ -41,6 +43,10 @@ export class ListaClientesComponent implements OnInit {
       .subscribe(value => {
         this.filtrado = value.termino;
       });
+  }
+
+  detalleCliente(idCliente: string){
+    this.router.navigateByUrl(`/dashboard/clientes/expedientes/${idCliente}`);
   }
 
 
