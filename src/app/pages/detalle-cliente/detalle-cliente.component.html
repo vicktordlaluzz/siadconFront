@@ -87,15 +87,15 @@
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
                                 <li class="nav-item"><a class="nav-link active" href="#tramites" data-toggle="tab">Tramites</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Documentos</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#documentos" data-toggle="tab">Documentos</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Editar datos</a></li>
                             </ul>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body p-0">
+                        <div class="card-body">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tramites">
-                                    <table class="table table-striped">
+                                    <table class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th style="width: 5%">FOLIO</th>
@@ -179,93 +179,247 @@
                                     </table>
                                 </div>
                                 <!-- /.tab-pane -->
-                                <div class="tab-pane" id="timeline">
-                                    <!-- The timeline -->
-                                    <div class="timeline timeline-inverse">
-                                        <!-- timeline time label -->
-                                        <div class="time-label">
-                                            <span class="bg-danger">
-                                  10 Feb. 2014
-                                </span>
+                                <div class="tab-pane" id="documentos">
+
+
+                                    <div class="card-body">
+                                        <div *ngIf="!this.chargeDocS" class="row">
+                                            <div class="col-md-10">
+                                                <!-- <input type="search" placeholder="Buscar..." formControlName="termino" class="form-control "> -->
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button class="btn btn-block bg-gradient-primary" (click)="chargeDoc()"><i class="fas fa-folder-plus"></i> Suir documento</button>
+                                            </div>
+
                                         </div>
-                                        <!-- /.timeline-label -->
-                                        <!-- timeline item -->
-                                        <div>
-                                            <i class="fas fa-envelope bg-primary"></i>
 
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 12:05</span>
 
-                                                <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                                                <div class="timeline-body">
-                                                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle quora plaxo ideeli hulu weebly balihoo...
+                                        <hr *ngIf="!this.chargeDocS">
+                                        <div *ngIf="!this.chargeDocS" class="row">
+                                            <div class="col-md-4">
+                                                <div class="card bg-light">
+                                                    <div class="card-header text-muted border-bottom-0">
+                                                        Documento
+                                                    </div>
+                                                    <div class="card-body pt-0">
+                                                        <div class="row">
+                                                            <div class="col-5 text-center">
+                                                                <img style="width: 100%;" src="../../../assets/imgs/pdf.svg" alt="user-avatar" class="rounded">
+                                                            </div>
+                                                            <div class="col-7">
+                                                                <div class="row">
+                                                                    <h2 class="lead"><b>Acta de nacimiento</b></h2>
+                                                                    <p class="text-muted text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                                                                    <p class="text-muted text-sm"><strong class="">Fecha de subida:</strong> 24 ago 2020</p>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-block bg-gradient-danger"><i class="fas fa-folder-minus"></i></button>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-block bg-gradient-success"><i class="fas fa-file-download"></i></button></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="timeline-footer">
-                                                    <a href="#" class="btn btn-primary btn-sm">Read more</a>
-                                                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card bg-light">
+                                                    <div class="card-header text-muted border-bottom-0">
+                                                        Documento
+                                                    </div>
+                                                    <div class="card-body pt-0">
+                                                        <div class="row">
+                                                            <div class="col-5 text-center">
+                                                                <img style="width: 100%;" src="../../../assets/imgs/pdf.svg" alt="user-avatar" class="rounded">
+                                                            </div>
+                                                            <div class="col-7">
+                                                                <div class="row">
+                                                                    <h2 class="lead"><b>Acta de nacimiento</b></h2>
+                                                                    <p class="text-muted text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                                                                    <p class="text-muted text-sm"><strong class="">Fecha de subida:</strong> 24 ago 2020</p>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-block bg-gradient-danger"><i class="fas fa-folder-minus"></i></button>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-block bg-gradient-success"><i class="fas fa-file-download"></i></button></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card bg-light">
+                                                    <div class="card-header text-muted border-bottom-0">
+                                                        Documento
+                                                    </div>
+                                                    <div class="card-body pt-0">
+                                                        <div class="row">
+                                                            <div class="col-5 text-center">
+                                                                <img style="width: 100%;" src="../../../assets/imgs/pdf.svg" alt="user-avatar" class="rounded">
+                                                            </div>
+                                                            <div class="col-7">
+                                                                <div class="row">
+                                                                    <h2 class="lead"><b>Acta de nacimiento</b></h2>
+                                                                    <p class="text-muted text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                                                                    <p class="text-muted text-sm"><strong class="">Fecha de subida:</strong> 24 ago 2020</p>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-block bg-gradient-danger"><i class="fas fa-folder-minus"></i></button>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-block bg-gradient-success"><i class="fas fa-file-download"></i></button></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card bg-light">
+                                                    <div class="card-header text-muted border-bottom-0">
+                                                        Documento
+                                                    </div>
+                                                    <div class="card-body pt-0">
+                                                        <div class="row">
+                                                            <div class="col-5 text-center">
+                                                                <img style="width: 100%;" src="../../../assets/imgs/pdf.svg" alt="user-avatar" class="rounded">
+                                                            </div>
+                                                            <div class="col-7">
+                                                                <div class="row">
+                                                                    <h2 class="lead"><b>Acta de nacimiento</b></h2>
+                                                                    <p class="text-muted text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                                                                    <p class="text-muted text-sm"><strong class="">Fecha de subida:</strong> 24 ago 2020</p>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-block bg-gradient-danger"><i class="fas fa-folder-minus"></i></button>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-block bg-gradient-success"><i class="fas fa-file-download"></i></button></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card bg-light">
+                                                    <div class="card-header text-muted border-bottom-0">
+                                                        Documento
+                                                    </div>
+                                                    <div class="card-body pt-0">
+                                                        <div class="row">
+                                                            <div class="col-5 text-center">
+                                                                <img style="width: 100%;" src="../../../assets/imgs/pdf.svg" alt="user-avatar" class="rounded">
+                                                            </div>
+                                                            <div class="col-7">
+                                                                <div class="row">
+                                                                    <h2 class="lead"><b>Acta de nacimiento</b></h2>
+                                                                    <p class="text-muted text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                                                                    <p class="text-muted text-sm"><strong class="">Fecha de subida:</strong> 24 ago 2020</p>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-block bg-gradient-danger"><i class="fas fa-folder-minus"></i></button>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-block bg-gradient-success"><i class="fas fa-file-download"></i></button></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card bg-light">
+                                                    <div class="card-header text-muted border-bottom-0">
+                                                        Documento
+                                                    </div>
+                                                    <div class="card-body pt-0">
+                                                        <div class="row">
+                                                            <div class="col-5 text-center">
+                                                                <img style="width: 100%;" src="../../../assets/imgs/pdf.svg" alt="user-avatar" class="rounded">
+                                                            </div>
+                                                            <div class="col-7">
+                                                                <div class="row">
+                                                                    <h2 class="lead"><b>Acta de nacimiento</b></h2>
+                                                                    <p class="text-muted text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                                                                    <p class="text-muted text-sm"><strong class="">Fecha de subida:</strong> 24 ago 2020</p>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-block bg-gradient-danger"><i class="fas fa-folder-minus"></i></button>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <button class="btn btn-block bg-gradient-success"><i class="fas fa-file-download"></i></button></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- END timeline item -->
-                                        <!-- timeline item -->
-                                        <div>
-                                            <i class="fas fa-user bg-info"></i>
-
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
-
-                                                <h3 class="timeline-header border-0"><a href="#">Sarah Young</a> accepted your friend request
-                                                </h3>
-                                            </div>
-                                        </div>
-                                        <!-- END timeline item -->
-                                        <!-- timeline item -->
-                                        <div>
-                                            <i class="fas fa-comments bg-warning"></i>
-
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
-
-                                                <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                                                <div class="timeline-body">
-                                                    Take me to your leader! Switzerland is small and neutral! We are more like Germany, ambitious and misunderstood!
+                                        <form *ngIf="this.chargeDocS" [formGroup]="nDocumentoForm" (submit)="guardarDocumento()">
+                                            <h4>Subir nuevo documento</h4>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="exampleInputFile">Documento:</label>
+                                                    <div class="input-group">
+                                                        <div class="custom-file">
+                                                            <input (change)="prepareDoc($event.target.files[0])" accept=".pdf" formControlName="file" type="file" class="custom-file-input" id="exampleInputFile">
+                                                            <label class="custom-file-label" for="exampleInputFile">Elige un archivo</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="timeline-footer">
-                                                    <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
+
+                                                <div class="form-group col-md-6">
+                                                    <label>Tipo de documento:</label>
+                                                    <div class="input-group">
+                                                        <select formControlName="tipoDocumento" class="form-control">
+                                                <option value="Acta de nacimiento" >Acta de nacimiento</option>
+                                              </select>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- END timeline item -->
-                                        <!-- timeline time label -->
-                                        <div class="time-label">
-                                            <span class="bg-success">
-                                  3 Jan. 2014
-                                </span>
-                                        </div>
-                                        <!-- /.timeline-label -->
-                                        <!-- timeline item -->
-                                        <div>
-                                            <i class="fas fa-camera bg-purple"></i>
 
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
-
-                                                <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                                                <div class="timeline-body">
-                                                    <img src="https://placehold.it/150x100" alt="...">
-                                                    <img src="https://placehold.it/150x100" alt="...">
-                                                    <img src="https://placehold.it/150x100" alt="...">
-                                                    <img src="https://placehold.it/150x100" alt="...">
+                                            <div class="row">
+                                                <div class="form-group col-md-12">
+                                                    <label>Comentarios:</label>
+                                                    <div class="input-group">
+                                                        <textarea formControlName="comentarios" class="form-control" name="textarea" rows="10" cols="50"></textarea>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- END timeline item -->
-                                        <div>
-                                            <i class="far fa-clock bg-gray"></i>
-                                        </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6 offset-6">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <button (click)="cancelarDoc()" class="btn btn-block bg-gradient-danger">Cancelar</button>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <button [disabled]="!this.file" class="btn btn-block bg-gradient-success">Guardar documento</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div *ngIf="!this.chargeDocS" class="card-footer">
+                                        <nav aria-label="Contacts Page Navigation ">
+                                            <ul class="pagination justify-content-center m-0 ">
+                                                <pagination-controls (pageChange)="p=$event" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
+                                            </ul>
+                                        </nav>
+
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
