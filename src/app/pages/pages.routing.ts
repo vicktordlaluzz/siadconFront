@@ -22,7 +22,7 @@ const routes: Routes = [
             { path: 'administrador/nuevoUsuario', component: NuevoUsuarioComponent},
             { path: 'administrador/listaUsuarios', component: ListaUsuariosComponent},
             { path: 'clientes/alta', component: AddClienteComponent},
-            { path: 'clientes/lista', component: ListaClientesComponent}
+            { path: 'clientes/expedientes', component: ListaClientesComponent}
         ]
     }
 ];

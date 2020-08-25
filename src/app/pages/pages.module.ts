@@ -12,6 +12,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { ChangePassComponent } from './change-pass/change-pass.component';
 import { AddClienteComponent } from './add-cliente/add-cliente.component';
 import { ListaClientesComponent } from './lista-clientes/lista-clientes.component';
+import { BusquedaClientePipe } from '../pipes/busqueda-cliente.pipe';
 
 
 
@@ -24,7 +25,8 @@ import { ListaClientesComponent } from './lista-clientes/lista-clientes.componen
     ListaUsuariosComponent,
     ChangePassComponent,
     AddClienteComponent,
-    ListaClientesComponent
+    ListaClientesComponent,
+    BusquedaClientePipe
   ],
   imports: [
     CommonModule,

@@ -31,7 +31,7 @@ export class AddClienteComponent implements OnInit {
     const clienteData = this.nClienteForm.value;
     this.clienteServ.saveCliente(clienteData)
       .subscribe((res: any)=>{
-        this.router.navigate(['dashboard/clientes/lista']);
+        this.router.navigate(['dashboard/clientes/expedientes']);
         Swal.fire({
           icon: 'success',
           title: res.msg.toUpperCase(),

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientesService } from '../../services/clientes.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-lista-clientes',
@@ -9,9 +11,13 @@ import { ClientesService } from '../../services/clientes.service';
 export class ListaClientesComponent implements OnInit {
 
   clientes: string[];
-  p: number = 1;
-  constructor(private clientesServ: ClientesService) { 
+  p = 1;
+  filtrado = '';
+  searchForm:FormGroup;
+  constructor(private clientesServ: ClientesService,
+              private fb: FormBuilder) { 
     this.getClientes();
+    this.buildForm();
   }
 
   ngOnInit(): void {
@@ -21,6 +27,19 @@ export class ListaClientesComponent implements OnInit {
     this.clientesServ.getClientes()
       .subscribe((res: any) => {
         this.clientes = res.clientes;
+      });
+  }
+
+  buildForm(){
+    this.searchForm = this.fb.group({
+      termino: ['']
+    });
+    this.searchForm.valueChanges
+      .pipe(
+        debounceTime(500)
+      )
+      .subscribe(value => {
+        this.filtrado = value.termino;
       });
   }
 

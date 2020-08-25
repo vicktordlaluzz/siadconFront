@@ -9,6 +9,13 @@
             <div class="card-header">
                 <h3 class="card-title">Clientes</h3>
             </div>
+            <div class="card-body">
+                <div [formGroup]="searchForm" class="row">
+                    <div class="col-md-10 offset-1">
+                        <input type="search" placeholder="Buscar..." formControlName="termino" class="form-control form-control-lg">
+                    </div>
+                </div>
+            </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
                 <table class="table table-striped">
@@ -25,7 +32,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of this.clientes | paginate: { itemsPerPage: 10, currentPage: p }">
+                        <tr *ngFor="let item of this.clientes | busquedaCliente:filtrado | paginate: { itemsPerPage: 10, currentPage: p }">
                             <td>{{item._id}}</td>
                             <td>{{item.nombre | uppercase}} {{item.apaterno | uppercase}} {{item.amaterno | uppercase}} </td>
                             <td>{{item.rfc}}
@@ -34,7 +41,7 @@
                             <td>{{item.curp}}</td>
                             <td>{{item.email}}</td>
                             <td>{{item.fecha | date }}</td>
-                            <td class="text-center"><button class="btn btn-xs btn-block bg-gradient-info"><small><i class="fas fa-info"></i></small></button></td>
+                            <td class="text-center"><button class="btn btn-xs btn-block bg-gradient-primary"><small><i class="fas fa-info"></i></small></button></td>
                         </tr>
                     </tbody>
                 </table>
