@@ -72,6 +72,34 @@ export class DetalleClienteComponent implements OnInit {
   }
 
   deleteDoc(docId){
+    Swal.fire({
+      title: '¿Estas seguro que deseas eliminarlo?',
+      text: "!No podras deshacer esta accion!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminalo!'
+    }).then((result) => {
+      if (result.value) {
+        this.docsServ.deleteDoc(docId)
+            .subscribe((res: any) =>{
+              Swal.fire(
+                'Eliminado!',
+                res.msg,
+                'success'
+              );
+              this.getDocs();
+              this.p =0;
+            }, err => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: err.msg
+              });
+            });
+      }
+    })
   }
 
   guardarDocumento(){

@@ -86,7 +86,7 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link" href="#tramites" data-toggle="tab">Tramites</a></li>
+                                <li class="nav-item"><a class="nav-link disabled" href="#tramites" data-toggle="tab">Tramites</a></li>
                                 <li class="nav-item"><a class="nav-link active" href="#documentos" data-toggle="tab">Documentos</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Editar datos</a></li>
                             </ul>
@@ -216,7 +216,7 @@
                                                         <td>{{item?.fecha | date}}</td>
                                                         <td class="text-center">
                                                             <button (click)="descargarDoc(item.img)" type="button" class="btn btn-sm bg-gradient-warning"><i class="fas fa-cloud-download-alt"></i></button>
-                                                            <button (click)="deleteDoc(item.img)" type="button" class="btn btn-sm bg-gradient-danger m-1"><i class="fas fa-folder-minus"></i></button>
+                                                            <button (click)="deleteDoc(item._id)" type="button" class="btn btn-sm bg-gradient-danger m-1"><i class="fas fa-folder-minus"></i></button>
                                                         </td>
                                                     </tr>
                                                 </tbody>

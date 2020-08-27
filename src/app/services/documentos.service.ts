@@ -43,4 +43,12 @@ export class DocumentosService {
       responseType: 'blob'
     });
   }
+
+  deleteDoc(docId){
+    return this.http.delete(`${environment.base_url}/documentos/${docId}`, {
+      headers: {
+        'x-token': this.token
+      }}
+    );
+  }
 }
