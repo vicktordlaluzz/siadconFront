@@ -15,6 +15,9 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
               public auth: AuthService,
               private router: Router) { 
+    if(this.auth.getUid){
+      this.router.navigateByUrl('/dashboard');
+    }
     this.buildForm();
   }
 

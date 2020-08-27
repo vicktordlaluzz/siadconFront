@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from "@angular/common/http";
 import { environment } from '../../environments/environment';
-import { tap } from 'rxjs/operators';
+import { tap, map, catchError } from 'rxjs/operators';
 import * as jwt_decode from "jwt-decode";
+import { async } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -44,16 +46,20 @@ export class AuthService {
   }
 
   isLogged(){
-    if(localStorage.getItem('x-token')){
-      
-      return true;
-    }
-    
-    return false;
+    const token = localStorage.getItem('x-token') || '';
+    return this.http.get(`${environment.base_url}/auth`,{
+      headers: {
+        'x-token': token
+      }
+    }).pipe(
+      tap( (resp: any) => {
+        localStorage.setItem('x-token', resp.token );
+      }),
+      map( resp => true),
+      catchError( error => of(false))
+    );
   }
-
   
-
   changePass(form){
     return this.http.post(`${environment.base_url}/auth/changePass`,form,{
       headers:{

@@ -26,7 +26,7 @@ export class DocumentosService {
     });
   }
 
-  getDocumentos(){
+  getDocumentos(cliente){
     return this.http.get(`${environment.base_url}/documentos/${cliente}`, {
       headers: {
         'x-token': this.token
