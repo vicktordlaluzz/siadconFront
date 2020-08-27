@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DocumentosService } from '../../services/documentos.service';
 import { saveAs } from 'file-saver';
 import { environment } from 'src/environments/environment';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-detalle-cliente',
@@ -22,10 +23,12 @@ export class DetalleClienteComponent implements OnInit {
   telefonos: string[];
   p=0;
   nDocumentoForm: FormGroup;
+  searchForm: FormGroup;
   chargeDocS = false;
   file: File;
   documentos: any;
   base_url = environment.base_url;
+  filtrado = '';
 
   constructor(private actRoute: ActivatedRoute,
               private clientServ: ClientesService,
@@ -34,6 +37,7 @@ export class DetalleClienteComponent implements OnInit {
     this.clienteId = this.actRoute.snapshot.params.cliente;
     this.getClienteData();
     this.buildDocForm();
+    this.buildSearchForm();
     this.getDocs();
   }
 
@@ -58,6 +62,18 @@ export class DetalleClienteComponent implements OnInit {
     });
   }
 
+  buildSearchForm(){
+    this.searchForm = this.fb.group({
+      termino: ['']
+    });
+    this.searchForm.valueChanges
+      .pipe(
+        debounceTime(500)
+      )
+      .subscribe(value => {
+        this.filtrado = value.termino;
+      });
+  }
   chargeDoc(){
     this.chargeDocS = !this.chargeDocS;
   }

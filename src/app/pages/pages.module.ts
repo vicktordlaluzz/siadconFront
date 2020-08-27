@@ -14,6 +14,7 @@ import { AddClienteComponent } from './add-cliente/add-cliente.component';
 import { ListaClientesComponent } from './lista-clientes/lista-clientes.component';
 import { BusquedaClientePipe } from '../pipes/busqueda-cliente.pipe';
 import { DetalleClienteComponent } from './detalle-cliente/detalle-cliente.component';
+import { SerachDocPipe } from '../pipes/serach-doc.pipe';
 
 
 
@@ -28,6 +29,7 @@ import { DetalleClienteComponent } from './detalle-cliente/detalle-cliente.compo
     AddClienteComponent,
     ListaClientesComponent,
     BusquedaClientePipe,
+    SerachDocPipe,
     DetalleClienteComponent
   ],
   imports: [

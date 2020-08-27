@@ -184,8 +184,8 @@
 
                                     <div class="card-body">
                                         <div *ngIf="!this.chargeDocS" class="row">
-                                            <div class="col-md-10">
-                                                <!-- <input type="search" placeholder="Buscar..." formControlName="termino" class="form-control "> -->
+                                            <div [formGroup]="searchForm" class="col-md-10">
+                                                <input type="search" placeholder="Buscar..." formControlName="termino" class="form-control ">
                                             </div>
                                             <div class="col-md-2">
                                                 <button class="btn btn-block bg-gradient-primary" (click)="chargeDoc()"><i class="fas fa-folder-plus"></i> Suir documento</button>
@@ -209,7 +209,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr class="p-0" *ngFor="let item of this.documentos | paginate: { itemsPerPage: 5, currentPage: p }">
+                                                    <tr class="p-0" *ngFor="let item of this.documentos | serachDoc:this.filtrado  | paginate: { itemsPerPage: 5, currentPage: p }">
                                                         <td>{{item._id}}</td>
                                                         <td><i class="fas fa-file-pdf"></i> {{item.tipoDocumento}}</td>
                                                         <td>{{item.comentarios}}</td>
