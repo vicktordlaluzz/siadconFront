@@ -33,4 +33,14 @@ export class DocumentosService {
       }
     });
   }
+
+  getDocumento(documento){
+    return this.http.get(`${environment.base_url}/documentos/downloads/${documento}`, {
+      headers: {
+        'x-token': this.token,
+        'Content-Type': 'application/json'
+      },
+      responseType: 'blob'
+    });
+  }
 }

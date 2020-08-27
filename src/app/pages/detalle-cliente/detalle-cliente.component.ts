@@ -5,6 +5,8 @@ import { ClienteI } from '../../models/cliente-i';
 import Swal from 'sweetalert2';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DocumentosService } from '../../services/documentos.service';
+import { saveAs } from 'file-saver';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-detalle-cliente',
@@ -22,7 +24,8 @@ export class DetalleClienteComponent implements OnInit {
   nDocumentoForm: FormGroup;
   chargeDocS = false;
   file: File;
-  private documentos: any[];
+  documentos: any;
+  base_url = environment.base_url;
 
   constructor(private actRoute: ActivatedRoute,
               private clientServ: ClientesService,
@@ -31,6 +34,7 @@ export class DetalleClienteComponent implements OnInit {
     this.clienteId = this.actRoute.snapshot.params.cliente;
     this.getClienteData();
     this.buildDocForm();
+    this.getDocs();
   }
 
   ngOnInit(): void {
@@ -58,6 +62,18 @@ export class DetalleClienteComponent implements OnInit {
     this.chargeDocS = !this.chargeDocS;
   }
 
+  descargarDoc(docId){
+
+    this.docsServ.getDocumento(docId)
+        .subscribe((res: any) =>{
+          saveAs(res,docId);
+        }, error => console.log(error)
+        )
+  }
+
+  deleteDoc(docId){
+  }
+
   guardarDocumento(){
     const data = this.nDocumentoForm.value;
     this.docsServ.chargeDoc(this.file, data, this.clienteId)
@@ -68,6 +84,7 @@ export class DetalleClienteComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         });
+        this.getDocs();
         this.cancelarDoc();
       },(err: any) => {
         Swal.fire({
@@ -86,5 +103,14 @@ export class DetalleClienteComponent implements OnInit {
   
   prepareDoc(file: File){
     this.file = file;
+  }
+
+  getDocs(){
+    this.docsServ.getDocumentos(this.clienteId)
+        .subscribe((res: any) => {
+          this.documentos = res.docs;
+        }, error => {
+          console.log(error);
+        })
   }
 }

@@ -86,15 +86,15 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="#tramites" data-toggle="tab">Tramites</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#documentos" data-toggle="tab">Documentos</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#tramites" data-toggle="tab">Tramites</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="#documentos" data-toggle="tab">Documentos</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Editar datos</a></li>
                             </ul>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="tab-content">
-                                <div class="tab-pane active" id="tramites">
+                                <div class="tab-pane" id="tramites">
                                     <table class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
@@ -179,7 +179,7 @@
                                     </table>
                                 </div>
                                 <!-- /.tab-pane -->
-                                <div class="tab-pane" id="documentos">
+                                <div class="tab-pane active" id="documentos">
 
 
                                     <div class="card-body">
@@ -196,174 +196,31 @@
 
                                         <hr *ngIf="!this.chargeDocS">
                                         <div *ngIf="!this.chargeDocS" class="row">
-                                            <div class="col-md-4">
-                                                <div class="card bg-light">
-                                                    <div class="card-header text-muted border-bottom-0">
-                                                        Documento
-                                                    </div>
-                                                    <div class="card-body pt-0">
-                                                        <div class="row">
-                                                            <div class="col-5 text-center">
-                                                                <img style="width: 100%;" src="../../../assets/imgs/pdf.svg" alt="user-avatar" class="rounded">
-                                                            </div>
-                                                            <div class="col-7">
-                                                                <div class="row">
-                                                                    <h2 class="lead"><b>Acta de nacimiento</b></h2>
-                                                                    <p class="text-muted text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                                                                    <p class="text-muted text-sm"><strong class="">Fecha de subida:</strong> 24 ago 2020</p>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <button class="btn btn-block bg-gradient-danger"><i class="fas fa-folder-minus"></i></button>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <button class="btn btn-block bg-gradient-success"><i class="fas fa-file-download"></i></button></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="card bg-light">
-                                                    <div class="card-header text-muted border-bottom-0">
-                                                        Documento
-                                                    </div>
-                                                    <div class="card-body pt-0">
-                                                        <div class="row">
-                                                            <div class="col-5 text-center">
-                                                                <img style="width: 100%;" src="../../../assets/imgs/pdf.svg" alt="user-avatar" class="rounded">
-                                                            </div>
-                                                            <div class="col-7">
-                                                                <div class="row">
-                                                                    <h2 class="lead"><b>Acta de nacimiento</b></h2>
-                                                                    <p class="text-muted text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                                                                    <p class="text-muted text-sm"><strong class="">Fecha de subida:</strong> 24 ago 2020</p>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <button class="btn btn-block bg-gradient-danger"><i class="fas fa-folder-minus"></i></button>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <button class="btn btn-block bg-gradient-success"><i class="fas fa-file-download"></i></button></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="card bg-light">
-                                                    <div class="card-header text-muted border-bottom-0">
-                                                        Documento
-                                                    </div>
-                                                    <div class="card-body pt-0">
-                                                        <div class="row">
-                                                            <div class="col-5 text-center">
-                                                                <img style="width: 100%;" src="../../../assets/imgs/pdf.svg" alt="user-avatar" class="rounded">
-                                                            </div>
-                                                            <div class="col-7">
-                                                                <div class="row">
-                                                                    <h2 class="lead"><b>Acta de nacimiento</b></h2>
-                                                                    <p class="text-muted text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                                                                    <p class="text-muted text-sm"><strong class="">Fecha de subida:</strong> 24 ago 2020</p>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <button class="btn btn-block bg-gradient-danger"><i class="fas fa-folder-minus"></i></button>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <button class="btn btn-block bg-gradient-success"><i class="fas fa-file-download"></i></button></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="card bg-light">
-                                                    <div class="card-header text-muted border-bottom-0">
-                                                        Documento
-                                                    </div>
-                                                    <div class="card-body pt-0">
-                                                        <div class="row">
-                                                            <div class="col-5 text-center">
-                                                                <img style="width: 100%;" src="../../../assets/imgs/pdf.svg" alt="user-avatar" class="rounded">
-                                                            </div>
-                                                            <div class="col-7">
-                                                                <div class="row">
-                                                                    <h2 class="lead"><b>Acta de nacimiento</b></h2>
-                                                                    <p class="text-muted text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                                                                    <p class="text-muted text-sm"><strong class="">Fecha de subida:</strong> 24 ago 2020</p>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <button class="btn btn-block bg-gradient-danger"><i class="fas fa-folder-minus"></i></button>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <button class="btn btn-block bg-gradient-success"><i class="fas fa-file-download"></i></button></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="card bg-light">
-                                                    <div class="card-header text-muted border-bottom-0">
-                                                        Documento
-                                                    </div>
-                                                    <div class="card-body pt-0">
-                                                        <div class="row">
-                                                            <div class="col-5 text-center">
-                                                                <img style="width: 100%;" src="../../../assets/imgs/pdf.svg" alt="user-avatar" class="rounded">
-                                                            </div>
-                                                            <div class="col-7">
-                                                                <div class="row">
-                                                                    <h2 class="lead"><b>Acta de nacimiento</b></h2>
-                                                                    <p class="text-muted text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                                                                    <p class="text-muted text-sm"><strong class="">Fecha de subida:</strong> 24 ago 2020</p>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <button class="btn btn-block bg-gradient-danger"><i class="fas fa-folder-minus"></i></button>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <button class="btn btn-block bg-gradient-success"><i class="fas fa-file-download"></i></button></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="card bg-light">
-                                                    <div class="card-header text-muted border-bottom-0">
-                                                        Documento
-                                                    </div>
-                                                    <div class="card-body pt-0">
-                                                        <div class="row">
-                                                            <div class="col-5 text-center">
-                                                                <img style="width: 100%;" src="../../../assets/imgs/pdf.svg" alt="user-avatar" class="rounded">
-                                                            </div>
-                                                            <div class="col-7">
-                                                                <div class="row">
-                                                                    <h2 class="lead"><b>Acta de nacimiento</b></h2>
-                                                                    <p class="text-muted text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                                                                    <p class="text-muted text-sm"><strong class="">Fecha de subida:</strong> 24 ago 2020</p>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <button class="btn btn-block bg-gradient-danger"><i class="fas fa-folder-minus"></i></button>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <button class="btn btn-block bg-gradient-success"><i class="fas fa-file-download"></i></button></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+
+
+                                            <table class="table table-hover text-nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>FOLIO</th>
+                                                        <th>Documento</th>
+                                                        <th>Descripcion</th>
+                                                        <th>Subido</th>
+                                                        <th>Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="p-0" *ngFor="let item of this.documentos | paginate: { itemsPerPage: 5, currentPage: p }">
+                                                        <td>{{item._id}}</td>
+                                                        <td><i class="fas fa-file-pdf"></i> {{item.tipoDocumento}}</td>
+                                                        <td>{{item.comentarios}}</td>
+                                                        <td>{{item?.fecha | date}}</td>
+                                                        <td class="text-center">
+                                                            <button (click)="descargarDoc(item.img)" type="button" class="btn btn-sm bg-gradient-warning"><i class="fas fa-cloud-download-alt"></i></button>
+                                                            <button (click)="deleteDoc(item.img)" type="button" class="btn btn-sm bg-gradient-danger m-1"><i class="fas fa-folder-minus"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                         <form *ngIf="this.chargeDocS" [formGroup]="nDocumentoForm" (submit)="guardarDocumento()">
                                             <h4>Subir nuevo documento</h4>
