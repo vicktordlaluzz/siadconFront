@@ -39,55 +39,53 @@
                     </a>
                 </li>
                 <li class="nav-header">TRAMITES</li>
-                <li class="nav-header">CLIENTES</li>
+                <li class="nav-item">
+                    <a routerLink="/dashboard/tramites/new" routerLinkActive="active" class="nav-link">
+                        <i class="nav-icon fas fa-notes-medical"></i>
+                        <p>
+                            Nuevo tramite
+                        </p>
+                    </a>
+                </li>
 
-                <li class="nav-header">CONFIGURACION</li>
                 <li class="nav-item">
-                    <a class="nav-link">
-                        <i class="nav-icon fas fa-users-cog"></i>
+                    <a routerLink="/dashboard/listaTramites" routerLinkActive="active" class="nav-link">
+                        <i class="fas fa-clipboard-list nav-icon"></i>
                         <p>
-                            Usuario
-                            <i class="fas fa-angle-left right"></i>
+                            Lista de tramites
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a routerLink="usuario/perfil" routerLinkActive="active" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Perfil</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a routerLink="usuario/cambiarPass" routerLinkActive="active" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Cambiar contraseña</p>
-                            </a>
-                        </li>
-                    </ul>
+                </li>
+                <li class="nav-header">USUARIO</li>
+
+                <li class="nav-item">
+                    <a routerLink="usuario/perfil" routerLinkActive="active" class="nav-link">
+                        <i class="fas fa-address-card nav-icon"></i>
+                        <p>Perfil</p>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a routerLinkActive="active" class="nav-link">
-                        <i class="nav-icon fas fa-user-shield"></i>
-                        <p>
-                            Administrador
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
+                    <a routerLink="usuario/cambiarPass" routerLinkActive="active" class="nav-link">
+                        <i class="fas fa-key nav-icon"></i>
+                        <p>Cambiar contraseña</p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a routerLink="administrador/nuevoUsuario" routerLinkActive="active" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Agregar usuario</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a routerLink="administrador/listaUsuarios" routerLinkActive="active" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Lista de usuarios</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
+
+                <li class="nav-header">ADMINISTRADOR</li>
+
+                <li class="nav-item">
+                    <a routerLink="administrador/nuevoUsuario" routerLinkActive="active" class="nav-link">
+                        <i class="fas fa-user-plus nav-icon"></i>
+                        <p>Agregar usuario</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="administrador/listaUsuarios" routerLinkActive="active" class="nav-link">
+                        <i class="fas fa-users nav-icon"></i>
+                        <p>Lista de usuarios</p>
+                    </a>
+                </li>
+                <!-- /NAVITEM -->
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

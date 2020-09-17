@@ -1,0 +1,165 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <app-page-header></app-page-header>
+    <!-- Main content -->
+    <div class="container-fluid">
+        <section class="content">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-gradient-info elevation-1"><i class="fas fa-cogs"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">En proceso</span>
+                            <span class="info-box-number">
+                        10
+                        <small>%</small>
+                      </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <div class="col-md-2">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-gradient-danger elevation-1"><i class="fas fa-thumbs-down"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Rechazado</span>
+                            <span class="info-box-number">
+                        10
+                        <small>%</small>
+                      </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <div class="col-md-2">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-gradient-success elevation-1"><i class="fas fa-check"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Autorizado</span>
+                            <span class="info-box-number">
+                        10
+                        <small>%</small>
+                      </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <div class="col-md-2">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-gradient-olive elevation-1"><i class="fas fa-check-double"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Autorizado con remanente</span>
+                            <span class="info-box-number">
+                        10
+                        <small>%</small>
+                      </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <div class="col-md-2">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-gradient-orange elevation-1"><i class="fas fa-search-dollar"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">En proceso de pago</span>
+                            <span class="info-box-number">
+                        10
+                        <small>%</small>
+                      </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <div class="col-md-2">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-gradient-warning elevation-1"><i class="fas fa-hand-holding-usd"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Honorarios cobrados</span>
+                            <span class="info-box-number">
+                        10
+                        <small>%</small>
+                      </span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+            </div>
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Tramites</h3>
+
+                </div>
+
+                <div class="card-body">
+                    <div [formGroup]="searchForm" class="row">
+                        <div class="col-md-10 offset-1">
+                            <input type="search" placeholder="Buscar..." formControlName="termino" class="form-control form-control-lg">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-striped projects">
+                        <thead>
+                            <tr>
+                                <th>Tramite #</th>
+                                <th>Año</th>
+                                <th>Tipo de devolucion</th>
+                                <th>Cliente</th>
+                                <th>RFC</th>
+                                <th class="text-center">Estado</th>
+                                <th>Usuario</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of this.tramites | searchTramites: filtrado | paginate: { itemsPerPage: 6, currentPage: p }">
+                                <td><a>{{item._id}}</a><br><small>{{item.fechaM || item.fechaI | date}}</small></td>
+                                <td>{{item.anio}}</td>
+                                <td>{{item.tipo?.nombre}}</td>
+                                <td>{{item.cliente?.nombre | uppercase}} {{item.cliente?.apaterno | uppercase}} {{item.cliente?.amaterno | uppercase}}</td>
+                                <td>{{item.cliente?.rfc}}</td>
+                                <td class="project-state"><span class="badge badge-info">{{item.estado?.estado}}</span></td>
+                                <td class="project-state">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <img alt="Avatar" class="table-avatar" src="http://localhost:3005/api/usuarios/img/{{this.item.usuarioMod?.img || 'no-img.jpg'}}">
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td class="project-actions text-right">
+                                    <button (click)="verTramite(item._id)" class="btn bg-gradient-primary"><i class="far fa-eye"></i></button>
+                                    <button (click)="deleteTramite(item._id)" class="btn bg-gradient-danger"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer ">
+                    <nav aria-label="Contacts Page Navigation ">
+                        <ul class="pagination justify-content-center m-0 ">
+                            <pagination-controls (pageChange)="p=$event" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /.card -->
+
+        </section>
+    </div>
+</div>

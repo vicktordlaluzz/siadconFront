@@ -15,6 +15,11 @@ import { ListaClientesComponent } from './lista-clientes/lista-clientes.componen
 import { BusquedaClientePipe } from '../pipes/busqueda-cliente.pipe';
 import { DetalleClienteComponent } from './detalle-cliente/detalle-cliente.component';
 import { SerachDocPipe } from '../pipes/serach-doc.pipe';
+import { NewTramiteComponent } from './new-tramite/new-tramite.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TramiteslistComponent } from './tramiteslist/tramiteslist.component';
+import { SearchTramitesPipe } from '../pipes/search-tramites.pipe';
+import { TramiteDetailComponent } from './tramite-detail/tramite-detail.component';
 
 
 
@@ -30,14 +35,19 @@ import { SerachDocPipe } from '../pipes/serach-doc.pipe';
     ListaClientesComponent,
     BusquedaClientePipe,
     SerachDocPipe,
-    DetalleClienteComponent
+    SearchTramitesPipe,
+    DetalleClienteComponent,
+    NewTramiteComponent,
+    TramiteslistComponent,
+    TramiteDetailComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BrowserAnimationsModule
   ],
   exports: [
     PagesComponent,

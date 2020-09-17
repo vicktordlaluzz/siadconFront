@@ -2,247 +2,248 @@
 <div class="content-wrapper">
     <app-page-header></app-page-header>
     <!-- Main content -->
+    <div class="container-fluid">
 
-    <!-- Main content -->
-    <section *ngIf="!editar" class="content">
+        <!-- Main content -->
+        <section *ngIf="!editar" class="content">
 
-        <div class="col-md-6 offset-md-3">
+            <div class="col-md-6 offset-md-3">
 
 
-            <div class="card card-primary card-outline">
-                <div class="card-header">
-                    <h4>Mas acerca de {{this.usrService.loggedUsr?.nombre | uppercase}} {{this.usrService.loggedUsr?.apaterno | uppercase}}</h4>
-                </div>
-                <div class="card-body box-profile">
-
-                    <div class="text-center">
-                        <img (click)="selImg()" style="width: 140px; height: 140px ;cursor:pointer; cursor: hand;object-fit: scale-down;" class="profile-user-img img-fluid img-circle" src="http://localhost:3005/api/usuarios/img/{{this.usrService.loggedUsr?.img}}" alt="User profile picture">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h4>Mas acerca de {{this.usrService.loggedUsr?.nombre | uppercase}} {{this.usrService.loggedUsr?.apaterno | uppercase}}</h4>
                     </div>
+                    <div class="card-body box-profile">
 
-                    <h3 class="profile-username text-center">{{this.usrService.loggedUsr?.nombre | uppercase}} {{this.usrService.loggedUsr?.apaterno | uppercase}} {{this.usrService.loggedUsr?.amaterno | uppercase}}</h3>
-
-                    <p class="text-muted text-center">{{this.usrService.loggedUsr?.puesto | uppercase}}</p>
-
-                    <ul class="list-group list-group-unbordered mb-3">
-                        <li class="list-group-item">
-                            <b><i class="far fa-user"></i> Nombre:</b> <a class="float-right">{{this.usrService.loggedUsr?.nombre | uppercase}} {{this.usrService.loggedUsr?.apaterno | uppercase}} {{this.usrService.loggedUsr?.amaterno | uppercase}}</a>
-                        </li>
-                        <li class="list-group-item">
-                            <b><i class="far fa-address-card"></i> RFC:</b> <a class="float-right">{{this.usrService.loggedUsr?.rfc | uppercase}}</a>
-                        </li>
-                        <li class="list-group-item">
-                            <b><i class="far fa-address-card"></i> CURP:</b> <a class="float-right">{{this.usrService.loggedUsr?.curp | uppercase}}</a>
-                        </li>
-                        <li class="list-group-item">
-                            <b><i class="fas fa-tty"></i> Telefono:</b> <a class="float-right">{{this.usrService.loggedUsr?.telefono | uppercase}}</a>
-                        </li>
-                        <li class="list-group-item">
-                            <b><i class="fas fa-envelope-square"></i> Email:</b> <a class="float-right">{{this.usrService.loggedUsr?.email}}</a>
-                        </li>
-                        <li class="list-group-item">
-                            <b><i class="fas fa-building"></i> Direccion:</b> <a class="float-right">{{this.usrService.loggedUsr?.direccion.calle | uppercase}} # {{this.usrService.loggedUsr?.direccion.numeroE | uppercase}} {{this.usrService.loggedUsr?.direccion.numeroI | uppercase}},  {{this.usrService.loggedUsr?.direccion.colonia | uppercase}},  {{this.usrService.loggedUsr?.direccion.municipio | uppercase}},  {{this.usrService.loggedUsr?.direccion.estado | uppercase}}</a>
-                        </li>
-                        <li class="list-group-item">
-                            <b><i class="fas fa-check"></i> Puesto:</b> <a class="float-right">{{this.usrService.loggedUsr?.puesto | uppercase}}</a>
-                        </li>
-                    </ul>
-
-                </div>
-                <!-- /.card-body -->
-
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col-md-4 offset-8">
-                            <button (click)="editarUsuario()" class="btn btn-block bg-gradient-success"><i class="fas fa-user-edit"></i> Editar datos</button>
+                        <div class="text-center">
+                            <img (click)="selImg()" style="width: 140px; height: 140px ;cursor:pointer; cursor: hand;object-fit: scale-down;" class="profile-user-img img-fluid img-circle" src="http://localhost:3005/api/usuarios/img/{{this.usrService.loggedUsr?.img}}" alt="User profile picture">
                         </div>
-                    </div>
 
+                        <h3 class="profile-username text-center">{{this.usrService.loggedUsr?.nombre | uppercase}} {{this.usrService.loggedUsr?.apaterno | uppercase}} {{this.usrService.loggedUsr?.amaterno | uppercase}}</h3>
+
+                        <p class="text-muted text-center">{{this.usrService.loggedUsr?.puesto | uppercase}}</p>
+
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <b><i class="far fa-user"></i> Nombre:</b> <a class="float-right">{{this.usrService.loggedUsr?.nombre | uppercase}} {{this.usrService.loggedUsr?.apaterno | uppercase}} {{this.usrService.loggedUsr?.amaterno | uppercase}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b><i class="far fa-address-card"></i> RFC:</b> <a class="float-right">{{this.usrService.loggedUsr?.rfc | uppercase}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b><i class="far fa-address-card"></i> CURP:</b> <a class="float-right">{{this.usrService.loggedUsr?.curp | uppercase}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b><i class="fas fa-tty"></i> Telefono:</b> <a class="float-right">{{this.usrService.loggedUsr?.telefono | uppercase}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b><i class="fas fa-envelope-square"></i> Email:</b> <a class="float-right">{{this.usrService.loggedUsr?.email}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b><i class="fas fa-building"></i> Direccion:</b> <a class="float-right">{{this.usrService.loggedUsr?.direccion.calle | uppercase}} # {{this.usrService.loggedUsr?.direccion.numeroE | uppercase}} {{this.usrService.loggedUsr?.direccion.numeroI | uppercase}},  {{this.usrService.loggedUsr?.direccion.colonia | uppercase}},  {{this.usrService.loggedUsr?.direccion.municipio | uppercase}},  {{this.usrService.loggedUsr?.direccion.estado | uppercase}}</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b><i class="fas fa-check"></i> Puesto:</b> <a class="float-right">{{this.usrService.loggedUsr?.puesto | uppercase}}</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-4 offset-8">
+                                <button (click)="editarUsuario()" class="btn btn-block bg-gradient-success"><i class="fas fa-user-edit"></i> Editar datos</button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
 
-    <!-- Main content -->
-    <section *ngIf="editar" class="content">
+        <!-- Main content -->
+        <section *ngIf="editar" class="content">
 
-        <!-- left column -->
-        <div class="col-md-6 offset-md-3">
+            <!-- left column -->
+            <div class="col-md-6 offset-md-3">
 
-            <!-- form start -->
-            <form [formGroup]="usuarioForm" (submit)="saveChanges($event)">
-                <!-- general form elements -->
-                <div class="card card-dark">
-                    <div class="card-header">
-                        <h3 class="card-title">Editar usuario</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Nombre</label>
-                                    <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('nombre').errors && this.usuarioForm.get('nombre').touched" formControlName="nombre" placeholder="Nombre">
-                                    <div class="invalid-feedback">
-                                        El campo es requerido.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Apellido paterno</label>
-                                    <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('apaterno').errors && this.usuarioForm.get('apaterno').touched" formControlName="apaterno" placeholder="Apellido paterno">
-                                    <div class="invalid-feedback">
-                                        El campo es requerido.
-                                    </div>
-                                </div>
-                            </div>
+                <!-- form start -->
+                <form [formGroup]="usuarioForm" (submit)="saveChanges($event)">
+                    <!-- general form elements -->
+                    <div class="card card-dark">
+                        <div class="card-header">
+                            <h3 class="card-title">Editar usuario</h3>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Apellido materno</label>
-                                    <input type="text" class="form-control" formControlName="amaterno" placeholder="Apellido materno">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Nombre</label>
+                                        <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('nombre').errors && this.usuarioForm.get('nombre').touched" formControlName="nombre" placeholder="Nombre">
+                                        <div class="invalid-feedback">
+                                            El campo es requerido.
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">RFC</label>
-                                    <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('rfc').errors && this.usuarioForm.get('rfc').touched" formControlName="rfc" placeholder="RFC">
-
-                                    <div class="invalid-feedback">
-                                        Introduce un RFC valido.
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Apellido paterno</label>
+                                        <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('apaterno').errors && this.usuarioForm.get('apaterno').touched" formControlName="apaterno" placeholder="Apellido paterno">
+                                        <div class="invalid-feedback">
+                                            El campo es requerido.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">CURP</label>
-                                    <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('curp').errors && this.usuarioForm.get('curp').touched" formControlName="curp" placeholder="CURP">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Apellido materno</label>
+                                        <input type="text" class="form-control" formControlName="amaterno" placeholder="Apellido materno">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">RFC</label>
+                                        <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('rfc').errors && this.usuarioForm.get('rfc').touched" formControlName="rfc" placeholder="RFC">
 
-                                    <div class="invalid-feedback">
-                                        Introduce un CURP valido.
+                                        <div class="invalid-feedback">
+                                            Introduce un RFC valido.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Email</label>
-                                    <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('email').errors && this.usuarioForm.get('email').touched" formControlName="email" placeholder="Email">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">CURP</label>
+                                        <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('curp').errors && this.usuarioForm.get('curp').touched" formControlName="curp" placeholder="CURP">
 
-                                    <div class="invalid-feedback">
-                                        Introduce un Email valido.
+                                        <div class="invalid-feedback">
+                                            Introduce un CURP valido.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email</label>
+                                        <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('email').errors && this.usuarioForm.get('email').touched" formControlName="email" placeholder="Email">
+
+                                        <div class="invalid-feedback">
+                                            Introduce un Email valido.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <hr>
+                            <hr>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Calle</label>
-                                    <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('calle').errors && this.usuarioForm.get('calle').touched" formControlName="calle" placeholder="Calle">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Calle</label>
+                                        <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('calle').errors && this.usuarioForm.get('calle').touched" formControlName="calle" placeholder="Calle">
 
-                                    <div class="invalid-feedback">
-                                        El campo es requerido.
+                                        <div class="invalid-feedback">
+                                            El campo es requerido.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Numero Ext.</label>
+                                        <input type="text" class="form-control" formControlName="numeroE" placeholder="Ext.">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Numero Int.</label>
+                                        <input type="text" class="form-control" formControlName="numeroI" placeholder="Int.">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Numero Ext.</label>
-                                    <input type="text" class="form-control" formControlName="numeroE" placeholder="Ext.">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Numero Int.</label>
-                                    <input type="text" class="form-control" formControlName="numeroI" placeholder="Int.">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Colonia</label>
-                                    <input type="text" [class.is-invalid]="this.usuarioForm.get('colonia').errors && this.usuarioForm.get('colonia').touched" class="form-control" formControlName="colonia" placeholder="Colonia">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Colonia</label>
+                                        <input type="text" [class.is-invalid]="this.usuarioForm.get('colonia').errors && this.usuarioForm.get('colonia').touched" class="form-control" formControlName="colonia" placeholder="Colonia">
 
-                                    <div class="invalid-feedback">
-                                        El campo es requerido.
+                                        <div class="invalid-feedback">
+                                            El campo es requerido.
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Estado</label>
-                                    <select formControlName="estado" [class.is-invalid]="this.usuarioForm.get('estado').errors && this.usuarioForm.get('estado').touched" (change)="selectMunicipios()" class="form-control">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Estado</label>
+                                        <select formControlName="estado" [class.is-invalid]="this.usuarioForm.get('estado').errors && this.usuarioForm.get('estado').touched" (change)="selectMunicipios()" class="form-control">
                                                 
                                         <option value="1">-- SELECCIONA UN ESTADO --</option>
                                         <option *ngFor="let item of this.direcService.estados" value="{{item}}">{{item}}</option>
                                             </select>
 
-                                    <div class="invalid-feedback">
-                                        El campo es requerido.
+                                        <div class="invalid-feedback">
+                                            El campo es requerido.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Municipio</label>
-                                    <select class="form-control" [class.is-invalid]="this.usuarioForm.get('municipio').errors && this.usuarioForm.get('municipio').touched" formControlName="municipio">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Municipio</label>
+                                        <select class="form-control" [class.is-invalid]="this.usuarioForm.get('municipio').errors && this.usuarioForm.get('municipio').touched" formControlName="municipio">
                                                 
                                             <option *ngFor="let item of this.direcService.municipios" value="{{item}}">{{item}}</option>
                                             </select>
 
-                                    <div class="invalid-feedback">
-                                        El campo es requerido.
+                                        <div class="invalid-feedback">
+                                            El campo es requerido.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Telefono</label>
+                                        <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('telefono').errors && this.usuarioForm.get('telefono').touched" formControlName="telefono" placeholder="Telefono">
+
+                                        <div class="invalid-feedback">
+                                            Introduce un telefono a 10 digitos valido.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Telefono</label>
-                                    <input type="text" class="form-control" [class.is-invalid]="this.usuarioForm.get('telefono').errors && this.usuarioForm.get('telefono').touched" formControlName="telefono" placeholder="Telefono">
 
-                                    <div class="invalid-feedback">
-                                        Introduce un telefono a 10 digitos valido.
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-md-2 offset-md-10">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <button type="button" (click)="editarUsuario()" class="btn btn-danger form-control"><i class="fas fa-window-close"></i></button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button type="submit" class="btn btn-success form-control"><i class="fas fa-save"></i></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col-md-2 offset-md-10">
-                                <div class="row">
+                    <!-- /.card -->
 
-                                    <div class="col-md-6">
-                                        <button type="button" (click)="editarUsuario()" class="btn btn-danger form-control"><i class="fas fa-window-close"></i></button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="submit" class="btn btn-success form-control"><i class="fas fa-save"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.card -->
-
-            </form>
-        </div>
-        <!--/.col (left) -->
+                </form>
+            </div>
+            <!--/.col (left) -->
 
 
-        <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+            <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
 
-
+    </div>
 </div>

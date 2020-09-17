@@ -1,0 +1,219 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <app-page-header></app-page-header>
+    <!-- Main content -->
+    <div class="container-fluid">
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="card card-navy">
+                <div class="card-header border-transparent">
+                    <h3 class="card-title">Nuevo tramite</h3>
+                </div>
+                <!-- /.card-header -->
+                <br>
+                <div *ngIf="this.selCliente && !this.showForm" class="col-md-6 offset-md-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-user-check"></i> Cliente seleccionado
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <dl class="row">
+                                <dt class="col-sm-4">ID</dt>
+                                <dd class="col-sm-8">{{this.selCliente.cliente._id}}</dd>
+                                <dt class="col-sm-4">Nombre:</dt>
+                                <dd class="col-sm-8">{{this.selCliente.cliente.nombre | uppercase}} {{this.selCliente.cliente.apaterno | uppercase}} {{this.selCliente.cliente.amaterno | uppercase}}</dd>
+                                <dt class="col-sm-4">RFC:</dt>
+                                <dd class="col-sm-8">{{this.selCliente.cliente.rfc | uppercase}}</dd>
+                                <dt class="col-sm-4">CURP:</dt>
+                                <dd class="col-sm-8">{{this.selCliente.cliente.curp | uppercase}}</dd>
+                                <dt class="col-sm-4">NSS:</dt>
+                                <dd class="col-sm-8">{{this.selCliente.cliente.nss | uppercase}}</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!this.selCliente" class="card-body p-0">
+                    <div class="row">
+                        <div [formGroup]="searchForm" class="col-md-10 offset-md-1 p-3">
+                            <input formControlName="termino" type="search" name="" id="" placeholder="Buscar cliente..." class="form-control form-control-lg">
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table m-0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>RFC</th>
+                                    <th>CURP</th>
+                                    <th>NSS</th>
+                                    <th class="text-center">Seleccionar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of this.clientes | busquedaCliente:filtrado  | paginate: { itemsPerPage: 8, currentPage: p }">
+                                    <td>{{item._id}}</td>
+                                    <td>{{item.nombre | uppercase}} {{item.apaterno | uppercase}} {{item.amaterno | uppercase}} </td>
+                                    <td>{{item.rfc}}
+                                    </td>
+                                    <td>{{item.curp}}</td>
+                                    <td>{{item.nss}}</td>
+
+                                    <td class="text-center">
+                                        <button (click)="seleccionarCliente(item._id)" type="button" class="btn btn-success btn-sm btn-flat"><i class="fas fa-check"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <form [formGroup]="tramiteForm" (submit)="saveTramite($event)">
+                    <!-- -Formulario de tramite- -->
+                    <div *ngIf="this.selCliente && this.showForm" class="card-body ">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h5> <i class="far fa-user"></i> Cliente</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="">Cliente ID:</label>
+                                <h4>{{this.selCliente.cliente._id}}</h4>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">Nombre del cliente:</label>
+                                <h4>{{this.selCliente.cliente.nombre | uppercase}} {{this.selCliente.cliente.apaterno | uppercase}} {{this.selCliente.cliente.amaterno | uppercase}}</h4>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="">RFC:</label>
+                                <h4>{{this.selCliente.cliente.rfc}}</h4>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h5> <i class="fas fa-info"></i> Tramite</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 form-group">
+                                <label for="">Tramite para el año:</label>
+                                <select formControlName="anio" class="form-control">
+                                <option value="2014">2014</option>
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                            </select>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Tipo de tramite:</label>
+                                <select [class.is-invalid]="this.tramiteForm.get('tipoTramite').errors && this.tramiteForm.get('tipoTramite').touched" formControlName="tipoTramite" class="form-control">
+                                <option >-------SELECCIONA UNO------</option>
+                                <option *ngFor="let item of this.tiposTramite" value="{{item._id}}">{{item.nombre}}</option>
+                            </select>
+                                <div class="invalid-feedback">
+                                    Por favor selecciona uno de la lista.
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h5> <i class="fas fa-minus-circle"></i> Deducibles</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 form-group">
+                                <label for="">Registro:</label>
+                                <select formControlName="registro" class="form-control">
+                                <option >---- NINGUNA ----</option>
+                                <option *ngFor="let item of this.registros" value="{{item._id}}">{{item.nombre}}</option>
+                            </select>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Monto:</label>
+                                <input formControlName="registroM" type="number" class="form-control">
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Hipoteca:</label>
+                                <select formControlName="hipoteca" class="form-control">
+                                <option value="null">---- NINGUNA ----</option>
+                                <option *ngFor="let item of this.hipotecas" value="{{item._id}}">{{item.nombre}}</option>
+                            </select>
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="">Monto:</label>
+                                <input formControlName="hipotecaM" type="number" class="form-control">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h5> <i class="fas fa-dollar-sign"></i> Montos</h5>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label for="">Monto solicitado:</label>
+                                <input [class.is-invalid]="this.tramiteForm.get('montoS').errors && this.tramiteForm.get('montoS').touched" formControlName="montoS" type="number" class="form-control">
+
+                                <div class="invalid-feedback">
+                                    Este campo es requerido y debe tener un valor mayor a 0.
+                                </div>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="">Monto autorizado:</label>
+                                <input formControlName="montoA" type="number" class="form-control">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="">Honorario estimado:</label>
+                                <input formControlName="honorario" type="number" class="form-control">
+                            </div>
+                        </div>
+                        <hr>
+
+
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label for="">Comentarios:</label>
+                                <textarea [class.is-invalid]="this.tramiteForm.get('comentarios').errors && this.tramiteForm.get('comentarios').touched" formControlName="comentarios" name="" class="form-control" rows="5"></textarea>
+
+                                <div class="invalid-feedback">
+                                    Porfavor has un comentario.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- /Formulario de tramite- -->
+
+
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="row">
+
+                            <div *ngIf="this.selCliente" class="col-md-1">
+                                <button (click)="back()" type="button" class="btn btn-primary btn-block"><i class="fas fa-arrow-left"></i> Aterior</button>
+                            </div>
+                            <div *ngIf="!this.showForm" [ngClass]="{'offset-md-11': !this.selCliente, 'offset-md-10': this.selCliente}" class="col-md-1 ">
+                                <button (click)="mostrarForm()" type="button" [disabled]="!this.selCliente" class="btn btn-primary btn-block ">Siguiente <i class="fas fa-arrow-right "></i></button>
+                            </div>
+                            <div *ngIf="this.showForm" class="col-md-1 offset-md-10">
+                                <button type="submit" class="btn btn-success btn-block"><i class="fas fa-save"></i> Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- /.card-footer -->
+            </div>
+        </section>
+
+    </div>
+</div>

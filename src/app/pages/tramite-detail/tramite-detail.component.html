@@ -1,0 +1,204 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <app-page-header></app-page-header>
+    <!-- Main content -->
+    <div class="container-fluid">
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Tramite #{{this.tramite?._id}}</h3>
+                    <div class="card-tools">
+                        <button (click)="closeView()" type="button" class="btn btn-tool"><i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <h3 class="text-primary"><i class="fas fa-exchange-alt"></i> {{this.tramite?.tipo.nombre}} </h3>
+                            <p class="text-muted">{{this.tramite?.estado.estado}}</p>
+                            <div class="text-muted">
+                                <p class="text-sm">Año
+                                    <b class="d-block">{{this.tramite?.anio}}</b>
+                                </p>
+                                <p class="text-sm">Cliente
+                                    <b class="d-block">{{this.tramite?.cliente.rfc}}</b>
+                                    <b class="d-block">{{this.tramite?.cliente.nombre}} {{this.tramite?.cliente.apaterno}} {{this.tramite?.cliente.amaterno}}</b>
+                                </p>
+                                <p class="text-sm">Usuario
+                                    <b class="d-block">{{this.tramite?.usuarioAlta.nombre}}</b>
+                                </p>
+                                <p class="text-sm">Fecha de inicio
+                                    <b class="d-block">{{this.tramite?.fechaI | date}}</b>
+                                </p>
+                                <p class="text-sm">Comentarios
+                                    <b class="d-block">{{this.tramite?.comentarios}}</b>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-8">
+                            <div class="row">
+                                <div class="col-12 col-sm-4">
+                                    <div class="info-box bg-light">
+                                        <div class="info-box-content">
+                                            <span class="info-box-text text-center text-muted">Monto solicitado</span>
+                                            <span class="info-box-number text-center text-muted mb-0">{{this.tramite?.montoS | currency:'MXN':'symbol-narrow'}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="info-box bg-light">
+                                        <div class="info-box-content">
+                                            <span class="info-box-text text-center text-muted">Monto aprobado</span>
+                                            <span class="info-box-number text-center text-muted mb-0">{{this.tramite?.montoA | currency:'MXN':'symbol-narrow'}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-4">
+                                    <div class="info-box bg-light">
+                                        <div class="info-box-content">
+                                            <span class="info-box-text text-center text-muted">Honorarios</span>
+                                            <span class="info-box-number text-center text-muted mb-0">{{this.tramite?.honorario | currency:'MXN':'symbol-narrow'}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div *ngIf="this.tramite?.registro" class="col-md-4 offset-md-2">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-gradient-warning"><i class="fas fa-ticket-alt"></i></span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">REGISTRO {{this.tramite?.registro.registro.nombre}}</span>
+                                            <span class="info-box-number">{{this.tramite?.registro.monto | currency:'MXN':'symbol-narrow'}}</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <!-- /.info-box -->
+                                </div>
+                                <div *ngIf="this.tramite?.hipoteca" class="col-md-4">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-gradient-danger"><i class="fas fa-home"></i></span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">{{this.tramite?.hipoteca.registro.nombre}}</span>
+                                            <span class="info-box-number">{{this.tramite?.hipoteca.monto  | currency:'MXN':'symbol-narrow'}}</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <!-- /.info-box -->
+                                </div>
+                            </div>
+                            <hr *ngIf="this.tramite?.hipoteca || this.tramite?.registro">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+
+                                        <h4><i class="fas fa-archive"></i> Archivos</h4>
+
+                                        <table class="table table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>FOLIO</th>
+                                                    <th>Documento</th>
+                                                    <th>Descripcion</th>
+                                                    <th>Subido</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="p-0" *ngFor="let item of this.documentos | paginate: { itemsPerPage: 5, currentPage: p }">
+                                                    <td>{{item._id}}</td>
+                                                    <td><i class="fas fa-file-pdf"></i> {{item.tipoDocumento.tipo}}</td>
+                                                    <td>{{item.comentarios}}</td>
+                                                    <td>{{item?.fecha | date}}</td>
+                                                    <td class="text-center">
+                                                        <button (click)="descargarDoc(item.img)" type="button" class="btn btn-sm bg-gradient-warning"><i class="fas fa-cloud-download-alt"></i></button>
+                                                        <button (click)="deleteDoc(item._id)" type="button" class="btn btn-sm bg-gradient-danger m-1"><i class="fas fa-folder-minus"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-2 offset-md-8">
+                            <button type="button" class="btn btn-block bg-gradient-warning" data-toggle="modal" data-target="#subirDocumento">
+                                <i class="fas fa-cloud-upload-alt"></i> Nuevo documento
+                              </button>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-block bg-gradient-primary"><i class="fas fa-edit"></i> Editar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Button trigger modal -->
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="subirDocumento" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <form [formGroup]="nDocumentoForm" (submit)="subirDocumento($event)">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Elige un documento</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label for="">Selecciona un archivo</label>
+                                            <div class="custom-file">
+                                                <input formControlName="file" (change)="prepareDoc($event.target.files[0])" accept=".pdf" type="file" class="custom-file-input" id="customFile">
+                                                <label class="custom-file-label" for="customFile">{{this.file?.name}}</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="">Tipo de documento</label>
+                                            <select [class.is-invalid]="this.nDocumentoForm.get('tipoDocumento').errors && this.nDocumentoForm.get('tipoDocumento').touched" formControlName="tipoDocumento" name="" class="form-control" id="">
+                                            <option *ngFor="let item of this.tiposDocumentos" value="{{item._id}}">{{item.tipo}}</option>
+                                        </select>
+
+                                            <div class="invalid-feedback">
+                                                Todos los campos son requeridos.
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="">Comentarios</label>
+                                            <textarea [class.is-invalid]="this.nDocumentoForm.get('comentarios').errors && this.nDocumentoForm.get('comentarios').touched" formControlName="comentarios" name="" placeholder="Agrega un comentario" class="form-control" id="" cols="30" rows="10"></textarea>
+
+                                            <div class="invalid-feedback">
+                                                Todos los campos son requeridos.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" (click)="cancelDoc()" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" [disabled]="!this.nDocumentoForm.valid" class="btn btn-primary">Subir documento</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card -->
+
+        </section>
+    </div>
+</div>

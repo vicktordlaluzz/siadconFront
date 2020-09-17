@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClientesService } from '../../services/clientes.service';
 import { ClienteI } from '../../models/cliente-i';
 import Swal from 'sweetalert2';
@@ -8,6 +8,7 @@ import { DocumentosService } from '../../services/documentos.service';
 import { saveAs } from 'file-saver';
 import { environment } from 'src/environments/environment';
 import { debounceTime } from 'rxjs/operators';
+import { TramitesService } from '../../services/tramites.service';
 
 @Component({
   selector: 'app-detalle-cliente',
@@ -17,28 +18,38 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class DetalleClienteComponent implements OnInit {
 
+  // Datos del cliente
   private clienteId: string;
   direcciones: string[];
   cliente: ClienteI;
   telefonos: string[];
+  documentos: any;
+
+  // tramites
+  tramites: any;
+
+  tiposDocumentos: any;
   p=0;
   nDocumentoForm: FormGroup;
   searchForm: FormGroup;
   chargeDocS = false;
   file: File;
-  documentos: any;
   base_url = environment.base_url;
   filtrado = '';
 
-  constructor(private actRoute: ActivatedRoute,
+  constructor(private router: Router,
+              private actRoute: ActivatedRoute,
               private clientServ: ClientesService,
               private fb: FormBuilder,
-              private docsServ: DocumentosService) { 
+              private docsServ: DocumentosService,
+              private tramiteServ: TramitesService) { 
     this.clienteId = this.actRoute.snapshot.params.cliente;
     this.getClienteData();
     this.buildDocForm();
     this.buildSearchForm();
     this.getDocs();
+    this.getTiposDoc();
+    this.getTramites();
   }
 
   ngOnInit(): void {
@@ -74,6 +85,7 @@ export class DetalleClienteComponent implements OnInit {
         this.filtrado = value.termino;
       });
   }
+
   chargeDoc(){
     this.chargeDocS = !this.chargeDocS;
   }
@@ -84,7 +96,7 @@ export class DetalleClienteComponent implements OnInit {
         .subscribe((res: any) =>{
           saveAs(res,docId);
         }, error => console.log(error)
-        )
+        );
   }
 
   deleteDoc(docId){
@@ -120,6 +132,7 @@ export class DetalleClienteComponent implements OnInit {
 
   guardarDocumento(){
     const data = this.nDocumentoForm.value;
+    console.log(data);
     this.docsServ.chargeDoc(this.file, data, this.clienteId)
       .subscribe((res: any)=>{
         Swal.fire({
@@ -131,6 +144,7 @@ export class DetalleClienteComponent implements OnInit {
         this.getDocs();
         this.cancelarDoc();
       },(err: any) => {
+        console.log(err);
         Swal.fire({
           icon: 'error',
           title: err.error.msg,
@@ -152,9 +166,32 @@ export class DetalleClienteComponent implements OnInit {
   getDocs(){
     this.docsServ.getDocumentos(this.clienteId)
         .subscribe((res: any) => {
+          console.log(res.docs);
           this.documentos = res.docs;
         }, error => {
           console.log(error);
         })
+  }
+
+  getTiposDoc(){
+    this.docsServ.getTipos()
+        .subscribe((res: any) => {
+          this.tiposDocumentos = res.tipos;
+        }, err => console.log(err)
+        )
+  }
+
+  getTramites(){
+    this.tramiteServ.getTramiesByCliente(this.clienteId)
+      .subscribe((res: any) => {
+        this.tramites = res.tramite;
+        console.log(this.tramites);
+        
+      }, err => console.log(err)
+      );
+  }
+
+  detalleTramite(tramite: string){
+    this.router.navigateByUrl(`/dashboard/tramite/${tramite}`);
   }
 }

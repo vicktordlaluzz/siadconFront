@@ -172,6 +172,8 @@
                                                 <div class="form-group ">
                                                     <label>Municipio</label>
                                                     <select formControlName="municipio" name="" id="" class="form-control">
+                                                        
+                                                    <option selected value="sin seleccion">----- SELECCIONA UN ESTADO -----</option>
                                                     <option *ngFor="let municipio of this.direcService.municipios" value="{{municipio}}">{{municipio}}</option>
                                                     </select>
                                                     <div class="invalid-feedback ">

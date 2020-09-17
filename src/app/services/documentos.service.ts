@@ -18,7 +18,6 @@ export class DocumentosService {
     formData.append('documento', fileF, fileF.name);
     formData.append('tipoDocumento', form.tipoDocumento);
     formData.append('comentarios', form.comentarios);
-    console.log(file);
     return this.http.post(`${environment.base_url}/documentos/${cliente}`, formData, {
       headers: {
         'x-token': this.token
@@ -46,6 +45,15 @@ export class DocumentosService {
 
   deleteDoc(docId){
     return this.http.delete(`${environment.base_url}/documentos/${docId}`, {
+      headers: {
+        'x-token': this.token
+      }}
+    );
+  }
+
+  // tipos de documentos
+  getTipos(){
+    return this.http.get(`${environment.base_url}/documentos/tipos`, {
       headers: {
         'x-token': this.token
       }}

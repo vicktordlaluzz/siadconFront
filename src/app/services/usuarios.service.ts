@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
 import { UsuarioI } from '../models/usuario-i';
+import { IfStmt } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -74,10 +75,12 @@ export class UsuariosService {
   }
 
   buildLogged(){
-    this.getUsuario(this.authService.logedUsrID)
-        .subscribe((res: any)=>{
-          this.loggedUsr = res.usuario;
-        }, err => console.log(err)
-        )
+    if(this.authService.logedUsrID){
+      this.getUsuario(this.authService.logedUsrID)
+      .subscribe((res: any)=>{
+        this.loggedUsr = res.usuario;
+      }, err => console.log(err)
+      )
+    }
   }
 }

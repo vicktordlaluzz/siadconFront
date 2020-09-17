@@ -10,6 +10,9 @@ import { ChangePassComponent } from './change-pass/change-pass.component';
 import { AddClienteComponent } from './add-cliente/add-cliente.component';
 import { ListaClientesComponent } from './lista-clientes/lista-clientes.component';
 import { DetalleClienteComponent } from './detalle-cliente/detalle-cliente.component';
+import { NewTramiteComponent } from './new-tramite/new-tramite.component';
+import { TramiteslistComponent } from './tramiteslist/tramiteslist.component';
+import { TramiteDetailComponent } from './tramite-detail/tramite-detail.component';
 
 const routes: Routes = [
     {
@@ -24,7 +27,10 @@ const routes: Routes = [
             { path: 'administrador/listaUsuarios', component: ListaUsuariosComponent},
             { path: 'clientes/alta', component: AddClienteComponent},
             { path: 'clientes/expedientes', component: ListaClientesComponent},
-            { path: 'clientes/expedientes/:cliente', component: DetalleClienteComponent}
+            { path: 'clientes/expedientes/:cliente', component: DetalleClienteComponent},
+            { path: 'tramites/new', component: NewTramiteComponent},
+            { path: 'tramite/:tramiteId', component: TramiteDetailComponent},
+            { path: 'listaTramites', component: TramiteslistComponent}
         ]
     }
 ];

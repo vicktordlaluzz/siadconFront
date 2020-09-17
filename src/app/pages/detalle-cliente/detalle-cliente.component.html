@@ -48,7 +48,7 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div *ngFor="let item of this.telefonos">
-                                <strong><i class="fas fa-hashtag"></i>{{item.telefono}} - <small>{{ item.tipoTelefono }}</small></strong>
+                                <strong><i class="fas fa-hashtag"></i> - {{item.numero || item.telefono}} <small>{{ item.tipoTelefono }}</small></strong>
 
                                 <p class="text-muted">
                                     {{item.descripcion}}
@@ -82,19 +82,23 @@
                     </div>
                     <!-- /.card -->
                 </div>
+
                 <div class="col-md-9">
-                    <div class="card">
-                        <div class="card-header p-2">
-                            <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link disabled" href="#tramites" data-toggle="tab">Tramites</a></li>
-                                <li class="nav-item"><a class="nav-link active" href="#documentos" data-toggle="tab">Documentos</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Editar datos</a></li>
+                    <div class="card card-navy card-tabs">
+                        <div class="card-header p-0 pt-1">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#tramites" data-toggle="tab">Tramites</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#settings" data-toggle="tab">Editar datos</a>
+                                </li>
                             </ul>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="tab-content">
-                                <div class="tab-pane" id="tramites">
+                                <div class="tab-pane active" id="tramites">
                                     <table class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
@@ -110,174 +114,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>OIDKSD23IE902K</td>
-                                                <td>2019</td>
-                                                <td>Impuesto a favor</td>
-                                                <td>$ 3,895.28</td>
-                                                <td>PENSIONISSSTE</td>
-                                                <td>---</td>
-                                                <td>En proceso de pago</td>
-                                                <td>25/AGOSTO/2020</td>
+                                            <tr *ngFor="let item of this.tramites">
+                                                <td>{{item._id}}</td>
+                                                <td>{{item.anio}}</td>
+                                                <td>{{item.tipo?.nombre}}</td>
+                                                <td>{{item.montoA | currency}}</td>
+                                                <td>{{item.registro?.registro?.nombre || 'Ninguno'}}</td>
+                                                <td>{{item.hipoteca?.registro?.nombre || 'Ninguno'}}</td>
+                                                <td>{{item.estado.estado}}</td>
+                                                <td>{{item.fechaI | date}}</td>
                                                 <td class="text-center">
-                                                    <button type="button" class="btn btn-xs bg-gradient-primary"><i class="fas fa-info-circle"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>OIDKSD23IE902K</td>
-                                                <td>2019</td>
-                                                <td>Impuesto a favor</td>
-                                                <td>$ 3,895.28</td>
-                                                <td>PENSIONISSSTE</td>
-                                                <td>---</td>
-                                                <td>En proceso de pago</td>
-                                                <td>25/AGOSTO/2020</td>
-                                                <td class="text-center">
-                                                    <button type="button" class="btn btn-xs bg-gradient-primary"><i class="fas fa-info-circle"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>OIDKSD23IE902K</td>
-                                                <td>2019</td>
-                                                <td>Impuesto a favor</td>
-                                                <td>$ 3,895.28</td>
-                                                <td>PENSIONISSSTE</td>
-                                                <td>---</td>
-                                                <td>En proceso de pago</td>
-                                                <td>25/AGOSTO/2020</td>
-                                                <td class="text-center">
-                                                    <button type="button" class="btn btn-xs bg-gradient-primary"><i class="fas fa-info-circle"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>OIDKSD23IE902K</td>
-                                                <td>2019</td>
-                                                <td>Impuesto a favor</td>
-                                                <td>$ 3,895.28</td>
-                                                <td>PENSIONISSSTE</td>
-                                                <td>---</td>
-                                                <td>En proceso de pago</td>
-                                                <td>25/AGOSTO/2020</td>
-                                                <td class="text-center">
-                                                    <button type="button" class="btn btn-xs bg-gradient-primary"><i class="fas fa-info-circle"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>OIDKSD23IE902K</td>
-                                                <td>2019</td>
-                                                <td>Impuesto a favor</td>
-                                                <td>$ 3,895.28</td>
-                                                <td>PENSIONISSSTE</td>
-                                                <td>---</td>
-                                                <td>En proceso de pago</td>
-                                                <td>25/AGOSTO/2020</td>
-                                                <td class="text-center">
-                                                    <button type="button" class="btn btn-xs bg-gradient-primary"><i class="fas fa-info-circle"></i></button>
+                                                    <button type="button" (click)="detalleTramite(item._id)" class="btn btn-xs bg-gradient-primary"><i class="fas fa-info-circle"></i></button>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                                <!-- /.tab-pane -->
-                                <div class="tab-pane active" id="documentos">
-
-
-                                    <div class="card-body">
-                                        <div *ngIf="!this.chargeDocS" class="row">
-                                            <div [formGroup]="searchForm" class="col-md-10">
-                                                <input type="search" placeholder="Buscar..." formControlName="termino" class="form-control ">
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button class="btn btn-block bg-gradient-primary" (click)="chargeDoc()"><i class="fas fa-folder-plus"></i> Suir documento</button>
-                                            </div>
-
-                                        </div>
-
-
-                                        <hr *ngIf="!this.chargeDocS">
-                                        <div *ngIf="!this.chargeDocS" class="row">
-
-
-                                            <table class="table table-hover text-nowrap">
-                                                <thead>
-                                                    <tr>
-                                                        <th>FOLIO</th>
-                                                        <th>Documento</th>
-                                                        <th>Descripcion</th>
-                                                        <th>Subido</th>
-                                                        <th>Acciones</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="p-0" *ngFor="let item of this.documentos | serachDoc:this.filtrado  | paginate: { itemsPerPage: 5, currentPage: p }">
-                                                        <td>{{item._id}}</td>
-                                                        <td><i class="fas fa-file-pdf"></i> {{item.tipoDocumento}}</td>
-                                                        <td>{{item.comentarios}}</td>
-                                                        <td>{{item?.fecha | date}}</td>
-                                                        <td class="text-center">
-                                                            <button (click)="descargarDoc(item.img)" type="button" class="btn btn-sm bg-gradient-warning"><i class="fas fa-cloud-download-alt"></i></button>
-                                                            <button (click)="deleteDoc(item._id)" type="button" class="btn btn-sm bg-gradient-danger m-1"><i class="fas fa-folder-minus"></i></button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <form *ngIf="this.chargeDocS" [formGroup]="nDocumentoForm" (submit)="guardarDocumento()">
-                                            <h4>Subir nuevo documento</h4>
-                                            <div class="row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="exampleInputFile">Documento:</label>
-                                                    <div class="input-group">
-                                                        <div class="custom-file">
-                                                            <input (change)="prepareDoc($event.target.files[0])" accept=".pdf" formControlName="file" type="file" class="custom-file-input" id="exampleInputFile">
-                                                            <label class="custom-file-label" for="exampleInputFile">Elige un archivo</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group col-md-6">
-                                                    <label>Tipo de documento:</label>
-                                                    <div class="input-group">
-                                                        <select formControlName="tipoDocumento" class="form-control">
-                                                <option value="Acta de nacimiento" >Acta de nacimiento</option>
-                                              </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="form-group col-md-12">
-                                                    <label>Comentarios:</label>
-                                                    <div class="input-group">
-                                                        <textarea formControlName="comentarios" class="form-control" name="textarea" rows="10" cols="50"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-6 offset-6">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <button (click)="cancelarDoc()" class="btn btn-block bg-gradient-danger">Cancelar</button>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <button [disabled]="!this.file" class="btn btn-block bg-gradient-success">Guardar documento</button>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </form>
-                                    </div>
-                                    <div *ngIf="!this.chargeDocS" class="card-footer">
-                                        <nav aria-label="Contacts Page Navigation ">
-                                            <ul class="pagination justify-content-center m-0 ">
-                                                <pagination-controls (pageChange)="p=$event" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
-                                            </ul>
-                                        </nav>
-
-                                    </div>
                                 </div>
                                 <!-- /.tab-pane -->
 
