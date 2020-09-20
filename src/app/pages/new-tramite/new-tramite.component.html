@@ -131,7 +131,7 @@
                             <div class="col-md-3 form-group">
                                 <label for="">Registro:</label>
                                 <select formControlName="registro" class="form-control">
-                                <option >---- NINGUNA ----</option>
+                                <option value="null" >---- NINGUNA ----</option>
                                 <option *ngFor="let item of this.registros" value="{{item._id}}">{{item.nombre}}</option>
                             </select>
                             </div>

@@ -91,7 +91,7 @@
                                     <a class="nav-link active" href="#tramites" data-toggle="tab">Tramites</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#settings" data-toggle="tab">Editar datos</a>
+                                    <a class="nav-link " href="#settings" (click)="fillForm()" data-toggle="tab">Editar datos</a>
                                 </li>
                             </ul>
                         </div>
@@ -99,7 +99,7 @@
                         <div class="card-body">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tramites">
-                                    <table class="table table-bordered table-striped">
+                                    <table *ngIf="this.tramites?.length != 0" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th style="width: 5%">FOLIO</th>
@@ -115,25 +115,236 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let item of this.tramites">
-                                                <td>{{item._id}}</td>
-                                                <td>{{item.anio}}</td>
-                                                <td>{{item.tipo?.nombre}}</td>
-                                                <td>{{item.montoA | currency}}</td>
-                                                <td>{{item.registro?.registro?.nombre || 'Ninguno'}}</td>
-                                                <td>{{item.hipoteca?.registro?.nombre || 'Ninguno'}}</td>
-                                                <td>{{item.estado.estado}}</td>
-                                                <td>{{item.fechaI | date}}</td>
+                                                <td>{{item?._id}}</td>
+                                                <td>{{item?.anio}}</td>
+                                                <td>{{item?.tipo?.nombre}}</td>
+                                                <td>{{item?.montoA | currency}}</td>
+                                                <td>{{item?.registro?.registro?.nombre || 'Ninguno'}}</td>
+                                                <td>{{item?.hipoteca?.registro?.nombre || 'Ninguno'}}</td>
+                                                <td>{{item?.estado?.estado || 'En proceso'}}</td>
+                                                <td>{{item?.fechaI | date}}</td>
                                                 <td class="text-center">
-                                                    <button type="button" (click)="detalleTramite(item._id)" class="btn btn-xs bg-gradient-primary"><i class="fas fa-info-circle"></i></button>
+                                                    <button type="button" (click)="detalleTramite(item?._id)" class="btn btn-xs bg-gradient-primary"><i class="fas fa-info-circle"></i></button>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div *ngIf="this.tramites?.length == 0" class="">
+                                        <div class="col-md-6 offset-md-3">
+
+                                            <button type="button" class="btn btn-block bg-gradient-info btn-lg">Agregar nuevo tramite</button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- /.tab-pane -->
 
-                                <div class="tab-pane" id="settings">
+                                <!-- CAMBIAR DATOS -->
+                                <div class="tab-pane " id="settings">
+                                    <div class="accordion" id="accordionExample">
+                                        <!-- DATOS GENERALES -->
+                                        <form [formGroup]="clienteForm">
+                                            <div class="card">
+                                                <div class="card-header" id="headingOne">
+                                                    <h2 class="mb-0">
+                                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                        <i class="far fa-user"></i> Generales
+                                              </button>
+                                                    </h2>
+                                                </div>
+
+                                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="" class="">Cliente</label>
+                                                                    <h5>{{this.cliente?._id}}</h5>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="" class="">Nombre</label>
+                                                                    <input type="text" formControlName="nombre" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="" class="">A paterno</label>
+                                                                    <input formControlName="apaterno" type="text" class="form-control">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="" class="">A materno</label>
+                                                                    <input formControlName="amaterno" type="text" class="form-control">
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="" class="">CURP</label>
+                                                                    <input formControlName="curp" type="text" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="" class="">RFC</label>
+                                                                    <input formControlName="rfc" type="text" class="form-control">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="" class="">NSS</label>
+                                                                    <input formControlName="nss" type="text" class="form-control">
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label for="" class="">Email</label>
+                                                                    <input formControlName="email" type="mail" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!-- /DATOS GENERALES -->
+
+                                        <!-- TELEFONOS -->
+                                        <div class="card">
+                                            <div class="card-header" id="headingTwo">
+                                                <h2 class="mb-0">
+                                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                        <i class="fas fa-tty"></i> Telefonos
+                                              </button>
+                                                </h2>
+                                            </div>
+                                            <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="" class="">Telefono</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="" class="">Tipo</label>
+                                                                <select name="" class="form-control" id="">
+                                                                    <option value="">Fijo</option>
+                                                                    <option value="">Movil</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-11">
+                                                            <div class="form-group">
+                                                                <label for="" class="">Comentarios</label>
+                                                                <textarea name="" class="form-control" id="" cols="30" rows="1"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                <label for="" class="">Eliminar</label>
+                                                                <button class="btn btn-danger btn-block"><i class="fas fa-backspace"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /TELEFONOS -->
+
+                                        <!-- DIRECCIONES -->
+                                        <div class="card">
+                                            <div class="card-header" id="headingThree">
+                                                <h2 class="mb-0">
+                                                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                        <i class="fas fa-map-marked-alt"></i> Direcciones
+                                              </button>
+                                                </h2>
+                                            </div>
+                                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="" class="">Calle</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="" class="">N Ext</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label for="" class="">N Int</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="" class="">Colonia</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="" class="">CP</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="" class="">Estado</label>
+                                                                <select class="form-control" name="" id="">
+                                                                    <option value="">Puebla</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="" class="">Municipio</label>
+                                                                <select class="form-control" name="" id="">
+                                                                    <option value="">Tehuacan</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- /DIRECCIONES -->
+                                    </div>
+                                    <div class="card-footer clearfix">
+                                        <button type="button" class="btn btn-info float-right"><i class="fas fa-save"></i> Guardar cambios</button>
+                                    </div>
+
                                 </div>
+
+                                <!-- /CAMBIAR DATOS -->
                                 <!-- /.tab-pane -->
                             </div>
                             <!-- /.tab-content -->

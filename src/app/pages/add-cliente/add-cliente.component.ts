@@ -19,7 +19,6 @@ export class AddClienteComponent implements OnInit {
               private clienteServ: ClientesService,
               private router: Router) {
                 this.buildForm();
-                this.addDireccionField();
                 this.addTelefonosField();
                }
 
@@ -41,17 +40,19 @@ export class AddClienteComponent implements OnInit {
       )
   }
 
-  selectMunicipios(index: number){
-    const municipio = this.direcciones.controls[index].get('estado').value;
+
+  selectMunicipios(){
+    const municipio = this.nClienteForm.controls['estado'].value;
     this.direcService.getMunicipios(municipio);
   }
 
+  // resetear formulario
   resetForm(){
     this.nClienteForm.reset();
-    this.direcciones.controls.splice(1,this.direcciones.length);
     this.telefonos.controls.splice(1,this.telefonos.length);
   }
 
+  // construccion del formulario
   buildForm(){
     this.nClienteForm = this.fb.group({
       nombre: ['test', Validators.required],
@@ -62,34 +63,23 @@ export class AddClienteComponent implements OnInit {
       nss: ['12345678912', [Validators.required,Validators.minLength(11), Validators.maxLength(11)]],
       email: ['vicktordlaluzz@gmail.com', [Validators.required,Validators.email]],
       puesto: ['contador', Validators.required],
-      direcciones: this.fb.array([]),
-      telefonos: this.fb.array([])
-    })
-  }
-
-  get direcciones(){
-    return this.nClienteForm.get('direcciones') as FormArray;
-  }
-  get telefonos(){
-    return this.nClienteForm.get('telefonos') as FormArray;
-  }
-
-  addDireccionField(event?: Event){
-    if (event) {
-    event.preventDefault();
-    }
-    const direccionFormGroup = this.fb.group({
       calle: ['', Validators.required],
       numeroE: [''],
       numeroI: [''],
       colonia: ['', Validators.required],
       estado: ['sin seleccion', Validators.required],
       municipio: ['', Validators.required],
-      cp: ['', Validators.required]
-    });
-    this.direcciones.push(direccionFormGroup);
+      cp: ['', Validators.required],
+      telefonos: this.fb.array([])
+    })
   }
 
+  // getter del arrayform de los telefonos
+  get telefonos(){
+    return this.nClienteForm.get('telefonos') as FormArray;
+  }
+
+  // agregar un formulario al array de los telefonos
   addTelefonosField(){
     const telefonosFormGroup = this.fb.group({
       telefono: ['', [Validators.required,Validators.minLength(10), Validators.maxLength(10)]],
@@ -99,13 +89,7 @@ export class AddClienteComponent implements OnInit {
     this.telefonos.push(telefonosFormGroup);
   }
 
-  removerDireccion(){
-    const indice = this.direcciones.length - 1;
-    if(this.direcciones.length > 1){
-      this.direcciones.removeAt(indice);
-    }
-  }
-
+  // remueve un grupo del formulario de los telefonos
   removeTelefono(){
     const indice = this.telefonos.length - 1;
     if(this.telefonos.length > 1){

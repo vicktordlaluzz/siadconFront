@@ -24,6 +24,7 @@ export class DetalleClienteComponent implements OnInit {
   cliente: ClienteI;
   telefonos: string[];
   documentos: any;
+  clienteForm: FormGroup;
 
   // tramites
   tramites: any;
@@ -50,6 +51,7 @@ export class DetalleClienteComponent implements OnInit {
     this.getDocs();
     this.getTiposDoc();
     this.getTramites();
+    this.buildClienteForm();
   }
 
   ngOnInit(): void {
@@ -84,6 +86,38 @@ export class DetalleClienteComponent implements OnInit {
       .subscribe(value => {
         this.filtrado = value.termino;
       });
+  }
+
+  // setear formulario para editar datos del cliente
+  buildClienteForm(){
+    this.clienteForm = this.fb.group({
+      nombre: ['', Validators.required],
+      apaterno: ['', Validators.required],
+      amaterno: [''],
+      rfc: ['', [Validators.required,Validators.minLength(12), Validators.maxLength(13)]],
+      curp: ['', [Validators.required,Validators.minLength(18), Validators.maxLength(18)]],
+      nss: ['', [Validators.required,Validators.minLength(11), Validators.maxLength(11)]],
+      email: ['', [Validators.required,Validators.email]],
+      puesto: ['', Validators.required],
+      calle: ['', Validators.required],
+      numeroE: [''],
+      numeroI: [''],
+      colonia: ['', Validators.required],
+      estado: ['sin seleccion', Validators.required],
+      municipio: ['', Validators.required],
+      cp: ['', Validators.required],
+      telefonos: this.fb.array([])
+    })
+  }
+
+  fillForm(){
+    this.clienteForm.get('nombre').setValue(this.cliente.nombre);
+    this.clienteForm.get('apaterno').setValue(this.cliente.apaterno);
+    this.clienteForm.get('amaterno').setValue(this.cliente.amaterno);
+    this.clienteForm.get('rfc').setValue(this.cliente.rfc);
+    this.clienteForm.get('curp').setValue(this.cliente.curp);
+    this.clienteForm.get('nss').setValue(this.cliente.nss);
+    this.clienteForm.get('email').setValue(this.cliente.email);
   }
 
   chargeDoc(){

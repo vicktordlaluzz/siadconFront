@@ -100,13 +100,13 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <div formArrayName="direcciones" *ngFor="let item of this.direcciones.controls; let i=index">
-                                    <div class="" [formGroupName]="i">
+                                <div>
+                                    <div class="">
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Calle</label>
-                                                    <input [class.is-invalid]="this.direcciones.controls[i].get('calle').errors && this.direcciones.controls[i].get('calle').touched" type="text" class="form-control" formControlName="calle" placeholder="Calle">
+                                                    <input [class.is-invalid]="this.nClienteForm.get('calle').errors && this.nClienteForm.get('calle').touched" type="text" class="form-control" formControlName="calle" placeholder="Calle">
 
                                                     <div class="invalid-feedback">
                                                         El campo es requerido.
@@ -136,7 +136,7 @@
                                             <div class="col-md-2 ">
                                                 <div class="form-group ">
                                                     <label>Codigo postal</label>
-                                                    <input [class.is-invalid]="this.direcciones.controls[i].get('cp').errors && this.direcciones.controls[i].get('cp').touched" type="text " class="form-control " formControlName="cp" placeholder="C.P.">
+                                                    <input [class.is-invalid]="this.nClienteForm.get('cp').errors && this.nClienteForm.get('cp').touched" type="text " class="form-control " formControlName="cp" placeholder="C.P.">
 
                                                     <div class="invalid-feedback ">
                                                         El campo es requerido.
@@ -146,7 +146,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group ">
                                                     <label>Colonia</label>
-                                                    <input [class.is-invalid]="this.direcciones.controls[i].get('colonia').errors && this.direcciones.controls[i].get('colonia').touched" type="text " class="form-control " formControlName="colonia" placeholder="Colonia">
+                                                    <input [class.is-invalid]="this.nClienteForm.get('colonia').errors && this.nClienteForm.get('colonia').touched" type="text " class="form-control " formControlName="colonia" placeholder="Colonia">
 
                                                     <div class="invalid-feedback ">
                                                         El campo es requerido.
@@ -158,7 +158,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group ">
                                                     <label>Estado</label>
-                                                    <select (change)="selectMunicipios(i)" formControlName="estado" name="" id="" class="form-control">
+                                                    <select (change)="selectMunicipios()" formControlName="estado" name="" id="" class="form-control">
                                                     <option selected value="sin seleccion">----- SELECCIONA UN ESTADO -----</option>
                                                     <option *ngFor="let estado of this.direcService.estados" value="{{estado}}">{{estado}}</option>
                                                 </select>
@@ -184,14 +184,6 @@
                                         </div>
                                     </div>
                                     <hr>
-                                </div>
-                                <div class="row ">
-                                    <div class="col-md-1 offset-10 ">
-                                        <button [disabled]="this.direcciones.length < 2" type="button" (click)="removerDireccion()" class="btn btn-block btn-outline-danger "><i class="fas fa-backspace "></i></button>
-                                    </div>
-                                    <div class="col-md-1 ">
-                                        <button [disabled]="this.nClienteForm.get('direcciones').invalid" (click)="addDireccionField($event)" type="button" class="btn btn-block btn-outline-primary "><i class="far fa-plus-square "></i></button>
-                                    </div>
                                 </div>
 
                             </div>

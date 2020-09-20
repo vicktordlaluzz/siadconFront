@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <h3 class="text-primary"><i class="fas fa-exchange-alt"></i> {{this.tramite?.tipo.nombre}} </h3>
-                            <p class="text-muted">{{this.tramite?.estado.estado}}</p>
+                            <p class="text-muted">{{this.tramite?.estado?.estado || 'En proceso'}}</p>
                             <div class="text-muted">
                                 <p class="text-sm">Año
                                     <b class="d-block">{{this.tramite?.anio}}</b>
@@ -74,8 +74,8 @@
                                         <span class="info-box-icon bg-gradient-warning"><i class="fas fa-ticket-alt"></i></span>
 
                                         <div class="info-box-content">
-                                            <span class="info-box-text">REGISTRO {{this.tramite?.registro.registro.nombre}}</span>
-                                            <span class="info-box-number">{{this.tramite?.registro.monto | currency:'MXN':'symbol-narrow'}}</span>
+                                            <span class="info-box-text">{{ this.tramite?.registro?.registro?.nombre || 'NINGUN REGISTRO'}}</span>
+                                            <span class="info-box-number">{{this.tramite?.registro.monto | currency:'MXN':'symbol-narrow' || ''}}</span>
                                         </div>
                                         <!-- /.info-box-content -->
                                     </div>
@@ -86,7 +86,7 @@
                                         <span class="info-box-icon bg-gradient-danger"><i class="fas fa-home"></i></span>
 
                                         <div class="info-box-content">
-                                            <span class="info-box-text">{{this.tramite?.hipoteca.registro.nombre}}</span>
+                                            <span class="info-box-text">{{this.tramite?.hipoteca?.registro?.nombre || 'SIN HIPOTECA'}}</span>
                                             <span class="info-box-number">{{this.tramite?.hipoteca.monto  | currency:'MXN':'symbol-narrow'}}</span>
                                         </div>
                                         <!-- /.info-box-content -->
@@ -112,7 +112,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="p-0" *ngFor="let item of this.documentos | paginate: { itemsPerPage: 5, currentPage: p }">
+                                                <tr class="p-0" *ngFor="let item of this.documentos">
                                                     <td>{{item._id}}</td>
                                                     <td><i class="fas fa-file-pdf"></i> {{item.tipoDocumento.tipo}}</td>
                                                     <td>{{item.comentarios}}</td>

@@ -5,6 +5,7 @@ import { TramiteI } from '../../models/tramite-i';
 import Swal from 'sweetalert2';
 import { DocumentosService } from '../../services/documentos.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-tramite-detail',
@@ -43,6 +44,8 @@ export class TramiteDetailComponent implements OnInit {
   buildTramite(){
     this.tramiteService.getTramite(this.tramiteId)
         .subscribe((res: any) =>{
+          console.log(res);
+          
           this.tramite = res.tramite;
         }, err => {
           console.log(err);
@@ -131,7 +134,6 @@ deleteDoc(docId){
               'success'
             );
             this.getDocs();
-            this.p =0;
           }, err => {
             Swal.fire({
               icon: 'error',
